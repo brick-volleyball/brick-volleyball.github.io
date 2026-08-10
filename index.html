@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRICK | 滋賀・長浜 男女混合バレーボールチーム</title>
+<meta name="description" content="滋賀県長浜市を拠点に活動する男女混合バレーボールチーム BRICK。金曜初心者クラス・日曜上級者クラス、6人制・9人制大会に参加。体験参加募集中。">
+
+<!-- ============================================================
+     文言・数値は content.js にすべて集約しています。
+     このHTML/CSSは編集せず、content.js の値だけ書き換えれば
+     ページ全体に反映されます。
+     ============================================================ -->
+<script src="content.js" defer></script>
+
+<style>
+  :root{
+    --navy:#1B2A4A;
+    --navy-deep:#101a30;
+    --white:#FFFFFF;
+    --paper:#F7F5F1;
+    --orange:#E8703A;
+    --orange-deep:#C85A2A;
+    --coral:#FF8C61;
+    --yellow:#FFC857;
+    --line: rgba(27,42,74,0.12);
+    --font-display: "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --font-body: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    --font-score: "Roboto Condensed", "Zen Kaku Gothic New", sans-serif;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Roboto+Condensed:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family: var(--font-body);
+    color: var(--navy);
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img{ max-width:100%; display:block; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+  }
+
+  :focus-visible{
+    outline: 3px solid var(--orange);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Nav ---------- */
+  .nav{
+    position: fixed;
+    top:0; left:0; right:0;
+    z-index: 100;
+    background: rgba(255,255,255,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height: 64px;
+  }
+  .nav-logo{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.02em;
+    color: var(--navy);
+  }
+  .nav-logo span{ color: var(--orange); }
+  .nav-links{
+    display:flex;
+    gap: 28px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .nav-links a{
+    position:relative;
+    padding: 4px 0;
+  }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:-2px;
+    width:0; height:2px;
+    background: var(--orange);
+    transition: width .25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+  .nav-cta{
+    background: var(--orange);
+    color:#fff !important;
+    padding: 9px 18px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  @media (max-width: 720px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position: relative;
+    min-height: 100svh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    background: var(--navy);
+    color: #fff;
+    overflow:hidden;
+    padding-top: 64px;
+  }
+
+  .hero-net{
+    position:absolute;
+    inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 46px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 46px);
+    mask-image: radial-gradient(ellipse at 70% 30%, black 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-glow{
+    position:absolute;
+    width: 620px; height: 620px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,112,58,0.35), transparent 70%);
+    top: -180px; right: -160px;
+    filter: blur(10px);
+    pointer-events:none;
+  }
+
+  .hero-inner{
+    position: relative;
+    z-index: 2;
+    padding: 64px 0 88px;
+  }
+
+  .hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family: var(--font-score);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    color: var(--yellow);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width: 22px; height:2px;
+    background: var(--yellow);
+  }
+
+  .hero h1{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(52px, 12vw, 128px);
+    line-height: 0.92;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 .accent{ color: var(--orange); }
+
+  .hero-sub{
+    margin-top: 24px;
+    max-width: 560px;
+    font-size: clamp(16px, 2vw, 19px);
+    line-height: 1.9;
+    color: rgba(255,255,255,0.82);
+  }
+
+  .hero-meta{
+    margin-top: 44px;
+    display:flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .hero-chip{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding: 10px 16px;
+    border: 1px solid rgba(255,255,255,0.22);
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .hero-chip .dot{
+    width:7px; height:7px;
+    border-radius:50%;
+    background: var(--orange);
+  }
+
+  .hero-actions{
+    margin-top: 40px;
+    display:flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    padding: 15px 28px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 15px;
+    border: 2px solid transparent;
+    cursor:pointer;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-primary{
+    background: var(--orange);
+    color:#fff;
+    box-shadow: 0 10px 30px -10px rgba(232,112,58,0.7);
+  }
+  .btn-primary:hover{ transform: translateY(-2px); background: var(--orange-deep); }
+  .btn-ghost{
+    border-color: rgba(255,255,255,0.35);
+    color:#fff;
+  }
+  .btn-ghost:hover{ border-color:#fff; transform: translateY(-2px); }
+
+  .hero-scroll{
+    position:absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(255,255,255,0.6);
+  }
+  .hero-scroll-line{
+    width:1px; height: 34px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.7), transparent);
+    animation: scrollLine 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollLine{
+    0%,100%{ transform: scaleY(1); opacity:1; }
+    50%{ transform: scaleY(0.5); opacity:0.4; }
+  }
+
+  /* ---------- Section shared ---------- */
+  section{ padding: 108px 0; }
+  .section-tight{ padding: 88px 0; }
+
+  .eyebrow{
+    font-family: var(--font-score);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--orange);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-bottom: 18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 22px; height:2px;
+    background: var(--orange);
+  }
+
+  h2{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: clamp(30px, 4.5vw, 46px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--navy);
+  }
+
+  .section-lead{
+    margin-top: 18px;
+    max-width: 560px;
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(27,42,74,0.72);
+  }
+
+  /* ---------- Scoreboard (signature element) ---------- */
+  .scoreboard{
+    background: var(--navy-deep);
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .scoreboard::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: linear-gradient(120deg, rgba(232,112,58,0.12), transparent 55%);
+  }
+  .score-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 18px;
+    overflow:hidden;
+  }
+  .score-cell{
+    background: var(--navy-deep);
+    padding: 40px 20px;
+    text-align:center;
+  }
+  .score-num{
+    font-family: var(--font-score);
+    font-weight: 900;
+    font-size: clamp(38px, 6vw, 58px);
+    color: var(--yellow);
+    line-height:1;
+    font-variant-numeric: tabular-nums;
+  }
+  .score-num .unit{
+    font-size: 0.4em;
+    margin-left: 4px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 700;
+  }
+  .score-label{
+    margin-top: 12px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.65);
+    font-weight: 700;
+  }
+  @media (max-width: 720px){
+    .score-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ---------- Schedule / Activity ---------- */
+  .schedule-grid{
+    margin-top: 56px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  @media (max-width: 720px){
+    .schedule-grid{ grid-template-columns: 1fr; }
+  }
+  .schedule-card{
+    background: var(--paper);
+    border-radius: 20px;
+    padding: 36px;
+    border: 1px solid var(--line);
+    position:relative;
+  }
+  .schedule-card.accent{
+    background: var(--navy);
+    color:#fff;
+    border-color: var(--navy);
+  }
+  .schedule-day{
+    font-family: var(--font-score);
+    font-weight: 900;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform:uppercase;
+    color: var(--orange);
+  }
+  .schedule-card.accent .schedule-day{ color: var(--yellow); }
+  .schedule-title{
+    margin-top: 10px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 26px;
+  }
+  .schedule-desc{
+    margin-top: 14px;
+    font-size: 14.5px;
+    line-height: 1.85;
+    opacity: 0.85;
+  }
+  .schedule-tags{
+    margin-top: 22px;
+    display:flex;
+    gap:8px;
+    flex-wrap: wrap;
+  }
+  .tag{
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(27,42,74,0.08);
+  }
+  .schedule-card.accent .tag{
+    background: rgba(255,255,255,0.14);
+  }
+
+  /* ---------- Format strip ---------- */
+  .format-strip{
+    margin-top: 20px;
+    display:flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .format-pill{
+    flex:1;
+    min-width: 220px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display:flex;
+    align-items:center;
+    gap: 16px;
+  }
+  .format-pill .num{
+    font-family: var(--font-score);
+    font-weight: 900;
+    font-size: 28px;
+    color: var(--orange);
+  }
+  .format-pill .txt{ font-size: 14px; line-height: 1.6; }
+  .format-pill .txt b{ display:block; font-size: 15px; margin-bottom:2px; }
+
+  /* ---------- Members / vibe ---------- */
+  .vibe{
+    background: var(--paper);
+  }
+  .vibe-grid{
+    margin-top: 56px;
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 860px){
+    .vibe-grid{ grid-template-columns: 1fr; }
+  }
+  .vibe-card{
+    background:#fff;
+    border-radius: 18px;
+    padding: 30px;
+    border: 1px solid var(--line);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .vibe-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -20px rgba(27,42,74,0.25);
+  }
+  .vibe-icon{
+    width: 44px; height:44px;
+    border-radius: 12px;
+    background: var(--orange);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: var(--font-score);
+    font-weight:900;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  .vibe-card h3{
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .vibe-card p{
+    font-size: 14px;
+    line-height: 1.85;
+    color: rgba(27,42,74,0.7);
+  }
+
+  /* ---------- Video ---------- */
+  .video-frame{
+    margin-top: 56px;
+    border-radius: 20px;
+    overflow:hidden;
+    aspect-ratio: 16/9;
+    background: var(--navy);
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+  }
+  .video-frame .play{
+    width: 76px; height:76px;
+    border-radius:50%;
+    background: var(--orange);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size: 22px;
+    cursor:pointer;
+    transition: transform .2s ease;
+  }
+  .video-frame .play:hover{ transform: scale(1.08); }
+  .video-note{
+    margin-top: 16px;
+    font-size: 13px;
+    color: rgba(27,42,74,0.55);
+  }
+
+  /* ---------- Join / CTA ---------- */
+  .join{
+    background: var(--navy);
+    color:#fff;
+    position: relative;
+    overflow:hidden;
+  }
+  .join::before{
+    content:"";
+    position:absolute;
+    width: 520px; height:520px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(255,200,87,0.18), transparent 70%);
+    bottom: -220px; left: -160px;
+  }
+  .join-inner{
+    position:relative;
+    text-align:center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .join .eyebrow{ justify-content:center; color: var(--yellow); }
+  .join .eyebrow::before{ background: var(--yellow); }
+  .join h2{ color:#fff; }
+  .join p{
+    margin-top: 18px;
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.78);
+  }
+  .join-actions{
+    margin-top: 36px;
+    display:flex;
+    gap: 14px;
+    justify-content:center;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding: 48px 0;
+    border-top: 1px solid var(--line);
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-logo{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 18px;
+  }
+  .footer-logo span{ color: var(--orange); }
+  .footer-links{
+    display:flex;
+    gap: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(27,42,74,0.6);
+  }
+  .footer-copy{
+    margin-top: 24px;
+    font-size: 12px;
+    color: rgba(27,42,74,0.45);
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="nav-logo">BRICK</div>
+    <div class="nav-links">
+      <a href="#activity">活動</a>
+      <a href="#vibe">チームの雰囲気</a>
+      <a href="#video">動画</a>
+      <a href="#join">参加案内</a>
+    </div>
+    <a href="#join" class="nav-cta" data-field="nav_cta_label"></a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-net"></div>
+  <div class="hero-glow"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-eyebrow" data-field="hero_eyebrow"></div>
+    <h1><span data-field="hero_title_line1"></span><br><span class="accent" data-field="hero_title_line2"></span></h1>
+    <p class="hero-sub" data-field="hero_sub"></p>
+    <div class="hero-meta">
+      <div class="hero-chip"><span class="dot"></span><span data-field="hero_chip_1"></span></div>
+      <div class="hero-chip"><span class="dot"></span><span data-field="hero_chip_2"></span></div>
+      <div class="hero-chip"><span class="dot"></span><span data-field="hero_chip_3"></span></div>
+    </div>
+    <div class="hero-actions">
+      <a href="#join" class="btn btn-primary" data-field="hero_btn_primary"></a>
+      <a href="#activity" class="btn btn-ghost" data-field="hero_btn_ghost"></a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span data-field="hero_scroll_label"></span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</header>
+
+<!-- Scoreboard -->
+<section class="scoreboard section-tight">
+  <div class="wrap">
+    <div class="score-grid">
+      <div class="score-cell reveal">
+        <div class="score-num"><span data-field="score_1_num"></span><span class="unit" data-field="score_1_unit"></span></div>
+        <div class="score-label" data-field="score_1_label"></div>
+      </div>
+      <div class="score-cell reveal">
+        <div class="score-num"><span data-field="score_2_num"></span><span class="unit" data-field="score_2_unit"></span></div>
+        <div class="score-label" data-field="score_2_label"></div>
+      </div>
+      <div class="score-cell reveal">
+        <div class="score-num"><span data-field="score_3_num"></span><span class="unit" data-field="score_3_unit"></span></div>
+        <div class="score-label" data-field="score_3_label"></div>
+      </div>
+      <div class="score-cell reveal">
+        <div class="score-num"><span data-field="score_4_num"></span><span class="unit" data-field="score_4_unit"></span></div>
+        <div class="score-label" data-field="score_4_label"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Activity -->
+<section id="activity">
+  <div class="wrap">
+    <div class="eyebrow" data-field="activity_eyebrow"></div>
+    <h2 data-field="activity_title"></h2>
+    <p class="section-lead" data-field="activity_lead"></p>
+
+    <div class="schedule-grid">
+      <div class="schedule-card reveal">
+        <div class="schedule-day" data-field="fri_day"></div>
+        <div class="schedule-title" data-field="fri_title"></div>
+        <p class="schedule-desc" data-field="fri_desc"></p>
+        <div class="schedule-tags">
+          <span class="tag" data-field="fri_tag_1"></span>
+          <span class="tag" data-field="fri_tag_2"></span>
+        </div>
+      </div>
+
+      <div class="schedule-card accent reveal">
+        <div class="schedule-day" data-field="sun_day"></div>
+        <div class="schedule-title" data-field="sun_title"></div>
+        <p class="schedule-desc" data-field="sun_desc"></p>
+        <div class="schedule-tags">
+          <span class="tag" data-field="sun_tag_1"></span>
+          <span class="tag" data-field="sun_tag_2"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="format-strip">
+      <div class="format-pill reveal">
+        <div class="num">6</div>
+        <div class="txt"><b data-field="format_6_title"></b><span data-field="format_6_desc"></span></div>
+      </div>
+      <div class="format-pill reveal">
+        <div class="num">9</div>
+        <div class="txt"><b data-field="format_9_title"></b><span data-field="format_9_desc"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Vibe -->
+<section id="vibe" class="vibe">
+  <div class="wrap">
+    <div class="eyebrow" data-field="vibe_eyebrow"></div>
+    <h2 data-field="vibe_title"></h2>
+    <p class="section-lead" data-field="vibe_lead"></p>
+
+    <div class="vibe-grid">
+      <div class="vibe-card reveal">
+        <div class="vibe-icon">01</div>
+        <h3 data-field="vibe_1_title"></h3>
+        <p data-field="vibe_1_desc"></p>
+      </div>
+      <div class="vibe-card reveal">
+        <div class="vibe-icon">02</div>
+        <h3 data-field="vibe_2_title"></h3>
+        <p data-field="vibe_2_desc"></p>
+      </div>
+      <div class="vibe-card reveal">
+        <div class="vibe-icon">03</div>
+        <h3 data-field="vibe_3_title"></h3>
+        <p data-field="vibe_3_desc"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video -->
+<section id="video">
+  <div class="wrap">
+    <div class="eyebrow" data-field="video_eyebrow"></div>
+    <h2 data-field="video_title"></h2>
+    <p class="section-lead" data-field="video_lead"></p>
+
+    <div class="video-frame">
+      <div class="play">▶</div>
+    </div>
+    <p class="video-note" data-field="video_note"></p>
+  </div>
+</section>
+
+<!-- Join -->
+<section id="join" class="join">
+  <div class="wrap join-inner">
+    <div class="eyebrow" data-field="join_eyebrow"></div>
+    <h2 data-field="join_title"></h2>
+    <p data-field="join_desc"></p>
+    <div class="join-actions">
+      <a href="#" class="btn btn-primary" data-field="join_btn_primary" data-href="link_email"></a>
+      <a href="#" class="btn btn-ghost" data-field="join_btn_ghost" data-href="link_instagram"></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-logo">BRICK</div>
+      <div class="footer-links">
+        <a href="#activity">活動</a>
+        <a href="#vibe">チーム</a>
+        <a href="#video">動画</a>
+        <a href="#join">参加案内</a>
+      </div>
+    </div>
+    <p class="footer-copy" data-field="footer_copy"></p>
+  </div>
+</footer>
+
+<script>
+  // content.js の値を data-field 属性を持つ要素に流し込む
+  function applyContent(){
+    if (typeof BRICK_CONTENT === 'undefined'){
+      // content.js が読み込めなかった場合、気づけるよう警告を表示する
+      const warn = document.createElement('div');
+      warn.textContent = '⚠ content.js が読み込めませんでした。index.html と content.js が同じフォルダにあるか確認してください。';
+      warn.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#C0392B;color:#fff;padding:10px 16px;font-size:13px;text-align:center;';
+      document.body.prepend(warn);
+      return;
+    }
+    document.querySelectorAll('[data-field]').forEach(el=>{
+      const key = el.getAttribute('data-field');
+      if (BRICK_CONTENT.hasOwnProperty(key)){
+        el.textContent = BRICK_CONTENT[key];
+      }
+    });
+    // href の差し替え（LINE / Instagram など）
+    document.querySelectorAll('[data-href]').forEach(el=>{
+      const key = el.getAttribute('data-href');
+      if (BRICK_CONTENT.hasOwnProperty(key)){
+        el.setAttribute('href', BRICK_CONTENT[key]);
+      }
+    });
+  }
+  applyContent();
+
+  // スクロールで要素をふわっと表示
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=> io.observe(el));
+</script>
+
+</body>
+</html>
