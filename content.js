@@ -65,7 +65,7 @@ const BRICK_CONTENT = {
   // ---- チームの雰囲気 ----
   vibe_eyebrow: "TEAM",
   vibe_title: "チームの雰囲気",
-  vibe_lead: "年齢もレベルも違う人たちが、同じコートで本気になれる。それがBRICKらしさです。",
+  vibe_lead: "年齢もレベルも違う人たちが、同じコートで楽しく、そして本気になれる。それがBRICKらしさです。",
 
   vibe_1_title: "幅広い年齢層",
   vibe_1_desc: "高校生から40代まで、世代を超えたメンバーが一緒にプレーしています。",
@@ -89,7 +89,7 @@ const BRICK_CONTENT = {
 
   // ---- リンク先URL（実際のURLに差し替えてください） ----
   link_line: "#",
-  link_instagram: "#",
+  link_instagram: "https://www.instagram.com/brick_volley?igsh=dWdyZjdhNHQ1Njkw",
 
   // ---- フッター ----
   footer_copy: "© 2026 BRICK Volleyball Team, Nagahama Shiga.",
