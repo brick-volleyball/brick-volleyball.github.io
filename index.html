@@ -8,7 +8,7 @@
 
 <!-- ============================================================
      BRICK ホームページ
-     最終更新日時: 2026-08-12 06:40 JST
+     最終更新日時: 2026-08-12 06:53 JST
      ------------------------------------------------------------
      文言・数値は content.js にすべて集約しています。
      このHTML/CSSは編集せず、content.js の値だけ書き換えれば
@@ -547,23 +547,13 @@
     aspect-ratio: 16/9;
     background: var(--navy);
     position:relative;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
   }
-  .video-frame .play{
-    width: 76px; height:76px;
-    border-radius:50%;
-    background: var(--orange);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size: 22px;
-    cursor:pointer;
-    transition: transform .2s ease;
+  .video-frame iframe{
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
   }
-  .video-frame .play:hover{ transform: scale(1.08); }
   .video-note{
     margin-top: 16px;
     font-size: 13px;
@@ -845,7 +835,7 @@
     <p class="section-lead" data-field="video_lead"></p>
 
     <div class="video-frame">
-      <div class="play">▶</div>
+      <iframe src="https://www.youtube.com/embed/LvONj_Lu4kc" title="BRICK 試合ハイライト" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
     </div>
     <p class="video-note" data-field="video_note"></p>
   </div>
