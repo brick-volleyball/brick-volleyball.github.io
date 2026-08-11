@@ -8,7 +8,7 @@
 
 <!-- ============================================================
      BRICK ホームページ
-     最終更新日時: 2026-08-12 5:50 JST
+     最終更新日時: 2026-08-12 06:05 JST
      ------------------------------------------------------------
      文言・数値は content.js にすべて集約しています。
      このHTML/CSSは編集せず、content.js の値だけ書き換えれば
@@ -21,6 +21,7 @@
        - vibe-1.jpg   … 「チームの雰囲気」1枚目のカード写真
        - vibe-2.jpg   … 「チームの雰囲気」2枚目のカード写真
        - vibe-3.jpg   … 「チームの雰囲気」3枚目のカード写真
+       - BRICK_logo.png … チームロゴ（ナビゲーションバーの「BRICK」文字の横に表示）
      横長（4:3や16:9程度）の写真が綺麗に収まります。
 
      ★このHTML自体を編集した場合も、上の「最終更新日時」を
@@ -96,13 +97,24 @@
     height: 64px;
   }
   .nav-logo{
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-family: var(--font-display);
     font-weight: 900;
     font-size: 22px;
     letter-spacing: 0.02em;
-    color: var(--navy);
   }
-  .nav-logo span{ color: var(--orange); }
+  .nav-logo-img{
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+  .nav-logo .l-b{ color: #4285F4; }
+  .nav-logo .l-r{ color: #EA4335; }
+  .nav-logo .l-i{ color: #FBBC05; }
+  .nav-logo .l-c{ color: #4285F4; }
+  .nav-logo .l-k{ color: #34A853; }
   .nav-links{
     display:flex;
     gap: 28px;
@@ -686,7 +698,10 @@
 
 <nav class="nav">
   <div class="wrap">
-    <div class="nav-logo">BRICK</div>
+    <div class="nav-logo">
+      <img src="BRICK_logo.png" alt="BRICK ロゴ" class="nav-logo-img">
+      <span class="l-b">B</span><span class="l-r">R</span><span class="l-i">I</span><span class="l-c">C</span><span class="l-k">K</span>
+    </div>
     <div class="nav-links">
       <a href="#activity">活動</a>
       <a href="#vibe">チームの雰囲気</a>
