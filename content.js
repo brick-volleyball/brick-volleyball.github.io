@@ -1,7 +1,7 @@
 /* ============================================================
    BRICK サイト文言データ
    ------------------------------------------------------------
-   最終更新日時: 2026-08-12 06:05 JST
+   最終更新日時: 2026-08-12 06:34 JST
    ------------------------------------------------------------
    ここの値を書き換えるだけで、サイト本文がすべて更新されます。
    HTML/CSSは触らなくてOKです。
@@ -36,13 +36,13 @@ const BRICK_CONTENT = {
   score_2_unit: "年",
   score_2_label: "活動年数",
 
-  score_3_num: "2",
-  score_3_unit: "回",
-  score_3_label: "週あたりの練習回数",
+  score_3_num: "7:3",
+  score_3_unit: "",
+  score_3_label: "男女比",
 
-  score_4_num: "複数",
-  score_4_unit: "",
-  score_4_label: "9人制大会 出場実績",
+  score_4_num: "6〜8",
+  score_4_unit: "セット",
+  score_4_label: "1回あたりの試合セット数",
 
   // ---- 活動スケジュール ----
   activity_eyebrow: "ACTIVITY",
@@ -104,5 +104,5 @@ const BRICK_CONTENT = {
 
   // ---- フッター ----
   footer_copy: "© 2026 BRICK Volleyball Team, Nagahama Shiga.",
-  site_updated_at: "最終更新: 2026年8月12日 6:05",
+  site_updated_at: "最終更新: 2026年8月12日 6:34",
 };
