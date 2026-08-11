@@ -1,3 +1,6 @@
+
+
+Index · HTML
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -5,15 +8,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BRICK | 滋賀・長浜 男女混合バレーボールチーム</title>
 <meta name="description" content="滋賀県長浜市を拠点に活動する男女混合バレーボールチーム BRICK。金曜初心者クラス・日曜上級者クラス、6人制・9人制大会に参加。体験参加募集中。">
-
+ 
 <!-- ============================================================
      BRICK ホームページ
-     最終更新日時: 2026-08-12 06:05 JST
+     最終更新日時: 2026-08-12 06:16 JST
      ------------------------------------------------------------
      文言・数値は content.js にすべて集約しています。
      このHTML/CSSは編集せず、content.js の値だけ書き換えれば
      ページ全体に反映されます。
-
+ 
      【写真の入れ方】
      以下のファイル名で画像をアップロードすると自動で反映されます
      （index.html / content.js と同じ場所に置いてください）。
@@ -23,12 +26,12 @@
        - vibe-3.jpg   … 「チームの雰囲気」3枚目のカード写真
        - BRICK_logo.png … チームロゴ（ナビゲーションバーの「BRICK」文字の横に表示）
      横長（4:3や16:9程度）の写真が綺麗に収まります。
-
+ 
      ★このHTML自体を編集した場合も、上の「最終更新日時」を
        書き換えてください。
      ============================================================ -->
 <!-- content.js は body 末尾で読み込みます（下部参照） -->
-
+ 
 <style>
   :root{
     --navy:#182338;
@@ -47,13 +50,13 @@
     --font-body: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
     --font-score: "Roboto Condensed", "Zen Kaku Gothic New", sans-serif;
   }
-
+ 
   @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Roboto+Condensed:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap');
-
+ 
   *{ margin:0; padding:0; box-sizing:border-box; }
-
+ 
   html{ scroll-behavior:smooth; }
-
+ 
   body{
     font-family: var(--font-body);
     color: var(--navy);
@@ -61,26 +64,26 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-
+ 
   img{ max-width:100%; display:block; }
-
+ 
   a{ color:inherit; text-decoration:none; }
-
+ 
   .wrap{
     max-width: 1080px;
     margin: 0 auto;
     padding: 0 24px;
   }
-
+ 
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   }
-
+ 
   :focus-visible{
     outline: 3px solid var(--orange);
     outline-offset: 3px;
   }
-
+ 
   /* ---------- Nav ---------- */
   .nav{
     position: fixed;
@@ -99,11 +102,11 @@
   .nav-logo{
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     font-family: var(--font-display);
     font-weight: 900;
     font-size: 22px;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.02em;
   }
   .nav-logo-img{
     width: 32px;
@@ -145,7 +148,7 @@
   @media (max-width: 720px){
     .nav-links{ display:none; }
   }
-
+ 
   /* ---------- Hero ---------- */
   .hero{
     position: relative;
@@ -163,7 +166,7 @@
     overflow:hidden;
     padding-top: 64px;
   }
-
+ 
   .hero-net{
     position:absolute;
     inset:0;
@@ -173,7 +176,7 @@
     mask-image: radial-gradient(ellipse at 70% 30%, black 0%, transparent 70%);
     pointer-events: none;
   }
-
+ 
   .hero-glow{
     position:absolute;
     width: 620px; height: 620px;
@@ -183,13 +186,13 @@
     filter: blur(10px);
     pointer-events:none;
   }
-
+ 
   .hero-inner{
     position: relative;
     z-index: 2;
     padding: 64px 0 88px;
   }
-
+ 
   .hero-eyebrow{
     display:inline-flex;
     align-items:center;
@@ -207,7 +210,7 @@
     width: 22px; height:2px;
     background: var(--yellow);
   }
-
+ 
   .hero h1{
     font-family: var(--font-display);
     font-weight: 900;
@@ -217,7 +220,7 @@
     white-space: nowrap;
   }
   .hero h1 .accent{ color: var(--orange); }
-
+ 
   .hero-sub{
     margin-top: 24px;
     max-width: 560px;
@@ -225,7 +228,7 @@
     line-height: 1.9;
     color: rgba(255,255,255,0.82);
   }
-
+ 
   .hero-meta{
     margin-top: 44px;
     display:flex;
@@ -247,7 +250,7 @@
     border-radius:50%;
     background: var(--orange);
   }
-
+ 
   .hero-actions{
     margin-top: 40px;
     display:flex;
@@ -277,7 +280,7 @@
     color:#fff;
   }
   .btn-ghost:hover{ border-color:#fff; transform: translateY(-2px); }
-
+ 
   .hero-scroll{
     position:absolute;
     bottom: 28px;
@@ -301,11 +304,11 @@
     0%,100%{ transform: scaleY(1); opacity:1; }
     50%{ transform: scaleY(0.5); opacity:0.4; }
   }
-
+ 
   /* ---------- Section shared ---------- */
   section{ padding: 108px 0; }
   .section-tight{ padding: 88px 0; }
-
+ 
   .eyebrow{
     font-family: var(--font-score);
     font-weight: 700;
@@ -323,7 +326,7 @@
     width: 22px; height:2px;
     background: var(--turquoise-deep);
   }
-
+ 
   h2{
     font-family: var(--font-display);
     font-weight: 900;
@@ -332,7 +335,7 @@
     letter-spacing: -0.01em;
     color: var(--navy);
   }
-
+ 
   .section-lead{
     margin-top: 18px;
     max-width: 560px;
@@ -340,7 +343,7 @@
     line-height: 1.9;
     color: rgba(27,42,74,0.72);
   }
-
+ 
   /* ---------- Scoreboard (signature element) ---------- */
   .scoreboard{
     background: var(--turquoise-deep);
@@ -393,7 +396,7 @@
   @media (max-width: 720px){
     .score-grid{ grid-template-columns: repeat(2, 1fr); }
   }
-
+ 
   /* ---------- Schedule / Activity ---------- */
   .schedule-grid{
     margin-top: 56px;
@@ -453,7 +456,7 @@
   .schedule-card.accent .tag{
     background: rgba(255,255,255,0.14);
   }
-
+ 
   /* ---------- Format strip ---------- */
   .format-strip{
     margin-top: 20px;
@@ -479,7 +482,7 @@
   }
   .format-pill .txt{ font-size: 14px; line-height: 1.6; }
   .format-pill .txt b{ display:block; font-size: 15px; margin-bottom:2px; }
-
+ 
   /* ---------- Members / vibe ---------- */
   .vibe{
     background: var(--paper);
@@ -538,7 +541,7 @@
     line-height: 1.85;
     color: rgba(27,42,74,0.7);
   }
-
+ 
   /* ---------- Video ---------- */
   .video-frame{
     margin-top: 56px;
@@ -569,7 +572,7 @@
     font-size: 13px;
     color: rgba(27,42,74,0.55);
   }
-
+ 
   /* ---------- Join / CTA ---------- */
   .join{
     background: var(--navy);
@@ -650,7 +653,7 @@
     text-underline-offset: 3px;
   }
   .join-rules-link:hover{ color: #fff; }
-
+ 
   /* ---------- Footer ---------- */
   footer{
     padding: 48px 0;
@@ -681,7 +684,7 @@
     font-size: 12px;
     color: rgba(27,42,74,0.45);
   }
-
+ 
   /* ---------- Reveal on scroll ---------- */
   .reveal{
     opacity: 0;
@@ -695,7 +698,7 @@
 </style>
 </head>
 <body>
-
+ 
 <nav class="nav">
   <div class="wrap">
     <div class="nav-logo">
@@ -711,7 +714,7 @@
     <a href="#join" class="nav-cta" data-field="nav_cta_label"></a>
   </div>
 </nav>
-
+ 
 <header class="hero">
   <div class="hero-net"></div>
   <div class="hero-glow"></div>
@@ -734,7 +737,7 @@
     <div class="hero-scroll-line"></div>
   </div>
 </header>
-
+ 
 <!-- Scoreboard -->
 <section class="scoreboard section-tight">
   <div class="wrap">
@@ -758,14 +761,14 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- Activity -->
 <section id="activity">
   <div class="wrap">
     <div class="eyebrow" data-field="activity_eyebrow"></div>
     <h2 data-field="activity_title"></h2>
     <p class="section-lead" data-field="activity_lead"></p>
-
+ 
     <div class="schedule-grid">
       <div class="schedule-card reveal">
         <div class="schedule-day" data-field="fri_day"></div>
@@ -776,7 +779,7 @@
           <span class="tag" data-field="fri_tag_2"></span>
         </div>
       </div>
-
+ 
       <div class="schedule-card accent reveal">
         <div class="schedule-day" data-field="sun_day"></div>
         <div class="schedule-title" data-field="sun_title"></div>
@@ -787,7 +790,7 @@
         </div>
       </div>
     </div>
-
+ 
     <div class="format-strip">
       <div class="format-pill reveal">
         <div class="num">6</div>
@@ -800,14 +803,14 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- Vibe -->
 <section id="vibe" class="vibe">
   <div class="wrap">
     <div class="eyebrow" data-field="vibe_eyebrow"></div>
     <h2 data-field="vibe_title"></h2>
     <p class="section-lead" data-field="vibe_lead"></p>
-
+ 
     <div class="vibe-grid">
       <div class="vibe-card reveal">
         <div class="vibe-photo" style="background-image:url('vibe-1.jpg');"></div>
@@ -836,21 +839,21 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- Video -->
 <section id="video">
   <div class="wrap">
     <div class="eyebrow" data-field="video_eyebrow"></div>
     <h2 data-field="video_title"></h2>
     <p class="section-lead" data-field="video_lead"></p>
-
+ 
     <div class="video-frame">
       <div class="play">▶</div>
     </div>
     <p class="video-note" data-field="video_note"></p>
   </div>
 </section>
-
+ 
 <!-- Join -->
 <section id="join" class="join">
   <div class="wrap join-inner">
@@ -873,7 +876,7 @@
     <a href="#" class="join-rules-link" data-field="join_rules_label" data-href="link_team_rules"></a>
   </div>
 </section>
-
+ 
 <footer>
   <div class="wrap">
     <div class="footer-inner">
@@ -889,7 +892,7 @@
     <p class="footer-copy" data-field="site_updated_at" style="opacity:0.6;"></p>
   </div>
 </footer>
-
+ 
 <script src="content.js?v=20260811"></script>
 <script>
   // content.js の値を data-field 属性を持つ要素に流し込む
@@ -917,7 +920,7 @@
     });
   }
   applyContent();
-
+ 
   // スクロールで要素をふわっと表示
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries)=>{
@@ -930,6 +933,7 @@
   }, { threshold: 0.15 });
   revealEls.forEach(el=> io.observe(el));
 </script>
-
+ 
 </body>
 </html>
+ 
