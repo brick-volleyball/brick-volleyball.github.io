@@ -16,7 +16,7 @@ const BRICK_CONTENT = {
 
   // ---- ヒーロー（最初の画面） ----
   hero_eyebrow: "滋賀県 長浜市 / 男女混合バレーボールチーム",
-  hero_title_line1: "バレー好きによる",
+  hero_title_line1: "バレー好きが集まる",
   hero_title_line2: "みんなで楽しいバレーボール",
   hero_sub: "高校生から40代まで、レベルもバラバラなメンバーが集まって週2回汗を流しています。金曜は初心者～中級者クラス、日曜は上級者クラス。6人制はもちろん、地域の混合9人制の大会にも定期的に参加中です。",
   hero_chip_1: "毎週金曜 夜 / わいわいバレー",
@@ -104,5 +104,5 @@ const BRICK_CONTENT = {
 
   // ---- フッター ----
   footer_copy: "© 2026 BRICK Volleyball Team, Nagahama Shiga.",
-  site_updated_at: "最終更新: 2026年8月12日 7:14",
+  site_updated_at: "最終更新: 2026年8月13日 6:14",
 };
