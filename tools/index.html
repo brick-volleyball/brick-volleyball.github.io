@@ -309,16 +309,21 @@
       const email = userCred.user.email;
 
       showLoading('契約状況を確認しています…');
+      console.log('[BRICK DEBUG] ログイン成功、メールアドレス:', JSON.stringify(email));
 
       // Firestoreの subscriptions コレクションを、メールアドレスをドキュメントIDとして確認
       const subRef = doc(db, 'subscriptions', email);
       const subSnap = await getDoc(subRef);
 
+      console.log('[BRICK DEBUG] subSnap.exists():', subSnap.exists());
+
       if (subSnap.exists()){
         const data = subSnap.data();
+        console.log('[BRICK DEBUG] 取得したデータ:', JSON.stringify(data));
         const isActive = data.status === 'active';
         // 有効期限があれば、期限内かどうかもチェック（任意項目）
         const notExpired = !data.currentPeriodEnd || (new Date(data.currentPeriodEnd.toDate ? data.currentPeriodEnd.toDate() : data.currentPeriodEnd) > new Date());
+        console.log('[BRICK DEBUG] isActive:', isActive, 'notExpired:', notExpired);
 
         if (isActive && notExpired){
           // 短い有効期限つきトークンをセッションに保存（ツール一覧ページでの確認用）
@@ -332,7 +337,7 @@
       showInactive();
 
     } catch(err){
-      console.error(err);
+      console.error('[BRICK DEBUG] エラー詳細:', err.code, err.message, err);
       showError('エラーが発生しました。時間をおいて再度お試しください。');
     }
   };
