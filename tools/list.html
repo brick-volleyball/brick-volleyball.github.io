@@ -8,7 +8,7 @@
 
 <!-- ============================================================
      BRICK ツール一覧ページ
-     最終更新日時: 2026-08-21 00:00 JST
+     最終更新日時: 2026-08-21 07:50 JST
      ------------------------------------------------------------
      index.htmlでログイン・契約確認済みのユーザーにツール一覧を表示。
      直接このページを開かれた場合や、契約が確認できない場合は
@@ -254,6 +254,13 @@
   }
   .footer-note a{ color: rgba(255,255,255,0.5); }
 
+  .version-note{
+    margin-top: 6px;
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+  }
+
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration: 0.01ms !important; }
   }
@@ -306,20 +313,21 @@
       <div class="tool-badge">開く ↗</div>
     </a>
 
-    <div class="tool-card is-disabled">
+    <a class="tool-card is-link" href="https://raw.githubusercontent.com/brick-volleyball/brick-volleyball.github.io/main/tools/download/team-wake.apk" download="team-wake.apk">
       <div class="tool-icon">🏐</div>
       <div class="tool-body">
         <div class="tool-name">チーム分けアプリ(Android)</div>
-        <div class="tool-desc">練習時のチーム分けを自動で行うAndroidアプリです。ダウンロードリンクは準備中です。</div>
+        <div class="tool-desc">練習時のチーム分けを自動で行うAndroidアプリです。ダウンロード後、インストールしてご利用ください。</div>
       </div>
-      <div class="tool-badge">準備中</div>
-    </div>
+      <div class="tool-badge">ダウンロード ⬇</div>
+    </a>
 
   </div>
 
   <p class="footer-note">
     ツールが開けない・不具合がある場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
   </p>
+  <p class="version-note">v2026-08-21 07:50</p>
 
 </div>
 
