@@ -3,18 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BRICK ツール | ログイン</title>
+<title>BRICKサポーター | ログイン</title>
 <meta name="robots" content="noindex">
 
 <!-- ============================================================
      BRICK ツール 入口ページ
-     最終更新日時: 2026-08-22 06:35 JST
+     最終更新日時: 2026-08-22 08:00 JST
      ------------------------------------------------------------
      Googleログイン → Firebase認証 → Firestoreでサポーター登録状況を確認
      → 登録中ならツール一覧へ、未登録ならStripe決済（サポーター登録）へ誘導
 
      2026-08-22: 表現を「契約／お支払い」から「サポーター登録／サポーターになる」へ変更。
      文言のみの変更で、判定ロジック(Firestoreのstatus/currentPeriodEnd)は不変。
+
+     2026-08-22: 以下3点を追加修正。
+     ・ロゴ下の見出しを「TOOLS」→「SUPPORTERS」に変更
+     ・サポーター登録が確認できた場合、ボタンを押さなくても自動でlist.htmlへ遷移
+     ・ページを開いた時点で既にFirebaseへログイン済みなら、Googleログインボタンを
+       押し直さなくても自動的に契約確認へ進むように変更(onAuthStateChangedを追加)。
+       Firebase Authのログイン状態はブラウザに既定で保持されるため、明示的な
+       ログアウト操作をしない限り再訪問時もログイン状態が維持される
      ============================================================ -->
 
 <style>
@@ -216,9 +224,9 @@
   <div class="logo">
     <span class="l-b">B</span><span class="l-r">R</span><span class="l-i">I</span><span class="l-c">C</span><span class="l-k">K</span>
   </div>
-  <div class="eyebrow">TOOLS</div>
+  <div class="eyebrow">SUPPORTERS</div>
 
-  <h1>BRICK ツールにログイン</h1>
+  <h1>BRICKサポーターとしてログイン</h1>
   <p class="sub">Googleアカウントでログインすると、サポーター登録状況を確認してツール一覧へご案内します。</p>
 
   <div id="google-signin-btn"></div>
@@ -250,7 +258,7 @@
 <!-- Firebase SDK -->
 <script type="module">
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-  import { getAuth, GoogleAuthProvider, signInWithCredential } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+  import { getAuth, GoogleAuthProvider, signInWithCredential, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
   import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
 
   // ---- Firebase設定 ----
@@ -293,6 +301,10 @@
     tossLoader.classList.remove('active');
     statusText.textContent = '';
     resultActive.classList.add('active');
+    // メッセージを一瞬見せてから、ボタン操作なしで自動的にツール一覧へ遷移
+    setTimeout(() => {
+      window.location.href = './list.html';
+    }, 900);
   }
 
   function showInactive(){
@@ -301,18 +313,12 @@
     resultInactive.classList.add('active');
   }
 
-  // ---- Googleログイン成功時のコールバック ----
-  window.handleGoogleSignIn = async function(response){
+  // ---- Firestoreでサポーター登録状況を確認し、結果に応じて画面を出し分ける ----
+  // Googleログインボタンからの新規ログイン時と、再訪問時の自動ログイン確認の
+  // どちらからも呼び出す共通処理
+  async function checkSubscriptionAndProceed(email){
     try{
-      showLoading('ログインしています…');
-
-      // GoogleのIDトークンをFirebaseの認証情報に変換
-      const credential = GoogleAuthProvider.credential(response.credential);
-      const userCred = await signInWithCredential(auth, credential);
-      const email = userCred.user.email;
-
-      showLoading('サポーター登録状況を確認しています…');
-      console.log('[BRICK DEBUG] ログイン成功、メールアドレス:', JSON.stringify(email));
+      console.log('[BRICK DEBUG] 契約確認対象メールアドレス:', JSON.stringify(email));
 
       // Firestoreの subscriptions コレクションを、メールアドレスをドキュメントIDとして確認
       const subRef = doc(db, 'subscriptions', email);
@@ -343,7 +349,37 @@
       console.error('[BRICK DEBUG] エラー詳細:', err.code, err.message, err);
       showError('エラーが発生しました。時間をおいて再度お試しください。');
     }
+  }
+
+  // ---- Googleログイン成功時のコールバック ----
+  window.handleGoogleSignIn = async function(response){
+    try{
+      showLoading('ログインしています…');
+
+      // GoogleのIDトークンをFirebaseの認証情報に変換
+      const credential = GoogleAuthProvider.credential(response.credential);
+      const userCred = await signInWithCredential(auth, credential);
+      const email = userCred.user.email;
+
+      showLoading('サポーター登録状況を確認しています…');
+      console.log('[BRICK DEBUG] ログイン成功、メールアドレス:', JSON.stringify(email));
+
+      await checkSubscriptionAndProceed(email);
+
+    } catch(err){
+      console.error('[BRICK DEBUG] エラー詳細:', err.code, err.message, err);
+      showError('エラーが発生しました。時間をおいて再度お試しください。');
+    }
   };
+
+  // ---- ページを開いた時点で既にログイン済みなら、ボタン操作なしで自動確認 ----
+  // Firebase Authのログイン状態は既定でブラウザに保持されるため、明示的に
+  // ログアウトしない限り、再訪問時もこの処理だけでツール一覧まで自動的に進む
+  onAuthStateChanged(auth, async (user) => {
+    if (!user || !user.email) return; // 未ログインならGoogleボタンの操作を待つ
+    showLoading('サポーター登録状況を確認しています…');
+    await checkSubscriptionAndProceed(user.email);
+  });
 </script>
 
 <!-- Google Identity Services -->
