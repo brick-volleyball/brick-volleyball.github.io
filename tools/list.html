@@ -3,26 +3,416 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BRICK ツール一覧</title>
+<title>BRICK ツール | 一覧</title>
 <meta name="robots" content="noindex">
+
+<!-- ============================================================
+     BRICK ツール一覧ページ
+     最終更新日時: 2026-08-21 00:00 JST
+     ------------------------------------------------------------
+     index.htmlでログイン・契約確認済みのユーザーにツール一覧を表示。
+     直接このページを開かれた場合や、契約が確認できない場合は
+     index.htmlへ差し戻す。
+     ============================================================ -->
+
 <style>
+  :root{
+    --navy:#182338;
+    --navy-deep:#0D141F;
+    --turquoise:#4FC3D9;
+    --turquoise-deep:#2FA0B8;
+    --white:#FFFFFF;
+    --paper:#F7F5F1;
+    --orange:#E8703A;
+    --orange-deep:#C85A2A;
+    --yellow:#FFC857;
+    --line: rgba(24,35,56,0.14);
+    --font-display: "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --font-body: "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+    --font-score: "Roboto Condensed", "Zen Kaku Gothic New", sans-serif;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Roboto+Condensed:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap');
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
   body{
-    font-family: "Hiragino Sans", sans-serif;
-    background: #182338;
+    font-family: var(--font-body);
+    background: var(--navy);
     color: #fff;
     min-height: 100svh;
     display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .bg-grid{
+    position: fixed;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 46px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 46px);
+    mask-image: radial-gradient(ellipse at 50% 20%, black 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .wrap{
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 640px;
+    padding: 40px 4px 80px;
+  }
+
+  .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .logo{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 20px;
+    letter-spacing: -0.02em;
+  }
+  .logo .l-b{ color: #4285F4; }
+  .logo .l-r{ color: #EA4335; }
+  .logo .l-i{ color: #FBBC05; }
+  .logo .l-c{ color: #4285F4; }
+  .logo .l-k{ color: #34A853; }
+  .logo .suffix{
+    font-family: var(--font-score);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--turquoise);
+    margin-left: 4px;
+  }
+
+  .account{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.55);
+  }
+  .account .email{
+    color: rgba(255,255,255,0.8);
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .logout-link{
+    color: rgba(255,255,255,0.45);
+    text-decoration: underline;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-family: inherit;
+    font-size: 12.5px;
+    padding: 0;
+  }
+  .logout-link:hover{ color: rgba(255,255,255,0.75); }
+
+  h1{
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  .sub{
+    font-size: 13.5px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 32px;
+  }
+
+  /* ---- 読み込み中／エラー時の表示（一覧の代わりに出す） ---- */
+  .center-state{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+    color: rgba(255,255,255,0.6);
+    font-size: 13.5px;
+  }
+  .center-state.active{ display: flex; }
+  .toss-loader{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .toss-ball{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--turquoise);
+    animation: toss 1.2s ease-in-out infinite;
+  }
+  .toss-ball:nth-child(2){ animation-delay: 0.15s; }
+  .toss-ball:nth-child(3){ animation-delay: 0.3s; }
+  @keyframes toss{
+    0%, 100%{ transform: translateY(0); opacity: 0.5; }
+    50%{ transform: translateY(-10px); opacity: 1; }
+  }
+
+  /* ---- ツール一覧 ---- */
+  .tool-list{
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .tool-list.active{ display: flex; }
+
+  .tool-card{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .2s ease, background .2s ease, border-color .2s ease;
+  }
+  .tool-card.is-link:hover{
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(79,195,217,0.5);
+  }
+  .tool-card.is-disabled{
+    cursor: default;
+    opacity: 0.55;
+  }
+
+  .tool-icon{
+    flex: none;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--turquoise);
+    color: var(--navy-deep);
+    display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 22px;
+  }
+  .tool-card.is-disabled .tool-icon{
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.6);
+  }
+
+  .tool-body{ flex: 1; min-width: 0; }
+  .tool-name{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15.5px;
+    margin-bottom: 4px;
+  }
+  .tool-desc{
+    font-size: 12.5px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.55);
+  }
+  .tool-badge{
+    flex: none;
+    font-family: var(--font-score);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.5);
+  }
+  .tool-card.is-link .tool-badge{
+    background: rgba(79,195,217,0.15);
+    color: var(--turquoise);
+  }
+
+  .footer-note{
+    margin-top: 40px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.7;
     text-align: center;
-    padding: 24px;
+  }
+  .footer-note a{ color: rgba(255,255,255,0.5); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration: 0.01ms !important; }
   }
 </style>
 </head>
 <body>
-  <div>
-    <p>ツール一覧ページは準備中です。</p>
-    <p style="margin-top:12px; opacity:0.6; font-size:13px;">次のステップで実装予定です。</p>
+
+<div class="bg-grid"></div>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="logo">
+      <span class="l-b">B</span><span class="l-r">R</span><span class="l-i">I</span><span class="l-c">C</span><span class="l-k">K</span>
+      <span class="suffix">TOOLS</span>
+    </div>
+    <div class="account">
+      <span class="email" id="account-email"></span>
+      <button class="logout-link" id="logout-btn">ログアウト</button>
+    </div>
   </div>
+
+  <h1>ツール一覧</h1>
+  <p class="sub">ご契約中のツールをご利用いただけます。</p>
+
+  <!-- 確認中 -->
+  <div class="center-state active" id="state-loading">
+    <div class="toss-loader">
+      <div class="toss-ball"></div>
+      <div class="toss-ball"></div>
+      <div class="toss-ball"></div>
+    </div>
+    契約状況を確認しています…
+  </div>
+
+  <!-- 未契約・未ログイン（表示前にindex.htmlへ差し戻すが、念のため） -->
+  <div class="center-state" id="state-blocked">
+    契約が確認できませんでした。<br>ログインページへ戻ります…
+  </div>
+
+  <!-- ツール一覧本体 -->
+  <div class="tool-list" id="tool-list">
+
+    <a class="tool-card is-link" href="https://brick-volleyball.github.io/brick-videocut/" target="_blank" rel="noopener">
+      <div class="tool-icon">✂️</div>
+      <div class="tool-body">
+        <div class="tool-name">BRICK 動画クリッパー</div>
+        <div class="tool-desc">試合動画から好きなシーンをスマホだけで切り出して保存できます。</div>
+      </div>
+      <div class="tool-badge">開く ↗</div>
+    </a>
+
+    <div class="tool-card is-disabled">
+      <div class="tool-icon">🏐</div>
+      <div class="tool-body">
+        <div class="tool-name">チーム分けアプリ(Android)</div>
+        <div class="tool-desc">練習時のチーム分けを自動で行うAndroidアプリです。ダウンロードリンクは準備中です。</div>
+      </div>
+      <div class="tool-badge">準備中</div>
+    </div>
+
+  </div>
+
+  <p class="footer-note">
+    ツールが開けない・不具合がある場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
+  </p>
+
+</div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+  import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+  import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+  // ---- Firebase設定（index.htmlと同一） ----
+  const firebaseConfig = {
+    apiKey: "AIzaSyCn0rLPeyN_hw3_lLaYw1UMAzsSK3DpxuM",
+    authDomain: "team-video-uploader-503720.firebaseapp.com",
+    projectId: "team-video-uploader-503720",
+    storageBucket: "team-video-uploader-503720.firebasestorage.app",
+    messagingSenderId: "551674365524",
+    appId: "1:551674365524:web:f67d5524bc0b3ccec70fc1",
+    measurementId: "G-S97JSJJC1N"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  const stateLoading = document.getElementById('state-loading');
+  const stateBlocked = document.getElementById('state-blocked');
+  const toolList = document.getElementById('tool-list');
+  const accountEmail = document.getElementById('account-email');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  function showLoading(){
+    stateLoading.classList.add('active');
+    stateBlocked.classList.remove('active');
+    toolList.classList.remove('active');
+  }
+
+  function showBlocked(){
+    stateLoading.classList.remove('active');
+    stateBlocked.classList.add('active');
+    toolList.classList.remove('active');
+    // 少し表示してからログインページへ戻す
+    setTimeout(() => {
+      window.location.href = './index.html';
+    }, 1200);
+  }
+
+  function showToolList(email){
+    stateLoading.classList.remove('active');
+    stateBlocked.classList.remove('active');
+    toolList.classList.add('active');
+    accountEmail.textContent = email;
+  }
+
+  // ---- ログイン状態を確認し、Firestoreで契約状況を再確認する ----
+  // index.htmlでのセッションに頼らず、このページ単独でも安全に判定できるようにする
+  onAuthStateChanged(auth, async (user) => {
+    if (!user || !user.email){
+      showBlocked();
+      return;
+    }
+
+    try{
+      const subRef = doc(db, 'subscriptions', user.email);
+      const subSnap = await getDoc(subRef);
+
+      if (subSnap.exists()){
+        const data = subSnap.data();
+        const isActive = data.status === 'active';
+        const notExpired = !data.currentPeriodEnd || (new Date(data.currentPeriodEnd.toDate ? data.currentPeriodEnd.toDate() : data.currentPeriodEnd) > new Date());
+
+        if (isActive && notExpired){
+          showToolList(user.email);
+          return;
+        }
+      }
+
+      showBlocked();
+
+    } catch(err){
+      console.error(err);
+      showBlocked();
+    }
+  });
+
+  logoutBtn.addEventListener('click', async () => {
+    try{
+      await signOut(auth);
+    } catch(err){
+      console.error(err);
+    }
+    window.location.href = './index.html';
+  });
+</script>
+
 </body>
 </html>
