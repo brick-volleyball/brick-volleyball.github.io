@@ -8,10 +8,13 @@
 
 <!-- ============================================================
      BRICK ツール 入口ページ
-     最終更新日時: 2026-08-20 08:50 JST
+     最終更新日時: 2026-08-22 06:35 JST
      ------------------------------------------------------------
-     Googleログイン → Firebase認証 → Firestoreで契約状態を確認
-     → 契約中ならツール一覧へ、未契約ならStripe決済へ誘導
+     Googleログイン → Firebase認証 → Firestoreでサポーター登録状況を確認
+     → 登録中ならツール一覧へ、未登録ならStripe決済（サポーター登録）へ誘導
+
+     2026-08-22: 表現を「契約／お支払い」から「サポーター登録／サポーターになる」へ変更。
+     文言のみの変更で、判定ロジック(Firestoreのstatus/currentPeriodEnd)は不変。
      ============================================================ -->
 
 <style>
@@ -216,7 +219,7 @@
   <div class="eyebrow">TOOLS</div>
 
   <h1>BRICK ツールにログイン</h1>
-  <p class="sub">Googleアカウントでログインすると、契約状況を確認してツール一覧へご案内します。</p>
+  <p class="sub">Googleアカウントでログインすると、サポーター登録状況を確認してツール一覧へご案内します。</p>
 
   <div id="google-signin-btn"></div>
 
@@ -229,17 +232,17 @@
   <p class="status" id="status-text"></p>
 
   <div class="result-box" id="result-active">
-    <p id="active-message">契約が確認できました。ツール一覧へどうぞ。</p>
+    <p id="active-message">サポーター登録が確認できました。ツール一覧へどうぞ。</p>
     <a href="./list.html" class="btn btn-primary">ツール一覧へ進む</a>
   </div>
 
   <div class="result-box" id="result-inactive">
-    <p id="inactive-message">現在、有効なご契約が確認できませんでした。月額プランへのお申し込みはこちらから。</p>
-    <a href="https://buy.stripe.com/5kQ14f75z1tG1Ungkt4ZG01" class="btn btn-pay" target="_blank" rel="noopener">お支払いはこちら</a>
+    <p id="inactive-message">現在、サポーター登録が確認できませんでした。BRICKサポーターになると、これらのツールをご利用いただけます。</p>
+    <a href="https://buy.stripe.com/5kQ14f75z1tG1Ungkt4ZG01" class="btn btn-pay" target="_blank" rel="noopener">サポーターになる</a>
   </div>
 
   <p class="footer-note">
-    ログインすると、契約確認のためメールアドレスを利用します。<br>
+    ログインすると、サポーター登録確認のためメールアドレスを利用します。<br>
     お困りの場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
   </p>
 </div>
@@ -308,7 +311,7 @@
       const userCred = await signInWithCredential(auth, credential);
       const email = userCred.user.email;
 
-      showLoading('契約状況を確認しています…');
+      showLoading('サポーター登録状況を確認しています…');
       console.log('[BRICK DEBUG] ログイン成功、メールアドレス:', JSON.stringify(email));
 
       // Firestoreの subscriptions コレクションを、メールアドレスをドキュメントIDとして確認
