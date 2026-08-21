@@ -16,6 +16,12 @@
 
      2026-08-22: 表現を「ツール購入」から「サポーター特典」へ変更。
      文言のみの変更で、判定ロジック(Firestoreのstatus/currentPeriodEnd)は不変。
+
+     2026-08-22: Stripeカスタマーポータルへの導線を追加。
+     「お支払い管理・解約」ボタン→Cloud Functions(createPortalSession)を
+     呼び出し→Stripeのポータルへリダイレクトする。解約は今の請求期間終了時
+     になるよう、Stripeダッシュボード側のポータル設定で制御している
+     （このファイル側にキャンセルタイミングのロジックは持たない）。
      ============================================================ -->
 
 <style>
@@ -272,6 +278,27 @@
   }
   .footer-note a{ color: rgba(255,255,255,0.5); }
 
+  .portal-link{
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    text-decoration: underline;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0;
+  }
+  .portal-link:hover{ color: rgba(255,255,255,0.8); }
+  .portal-link:disabled{ opacity: 0.5; cursor: default; text-decoration: none; }
+
+  .portal-status{
+    margin-top: 6px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    text-align: center;
+    min-height: 14px;
+  }
+
   .version-note{
     margin-top: 6px;
     font-size: 10.5px;
@@ -342,12 +369,17 @@
       <div class="tool-badge">ダウンロード ⬇</div>
     </a>
 
+    <p class="footer-note">
+      お支払い方法の確認・変更や解約は<button class="portal-link" id="portal-btn">こちら</button>から行えます。
+    </p>
+    <p class="portal-status" id="portal-status"></p>
+
   </div>
 
   <p class="footer-note">
     ツールが開けない・不具合がある場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
   </p>
-  <p class="version-note">v2026-08-22 06:20</p>
+  <p class="version-note">v2026-08-22 07:10</p>
 
 </div>
 
@@ -356,6 +388,7 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
   import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
   import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+  import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-functions.js";
 
   // ---- Firebase設定（index.htmlと同一） ----
   const firebaseConfig = {
@@ -371,12 +404,16 @@
   const app = initializeApp(firebaseConfig);
   const auth = getAuth(app);
   const db = getFirestore(app);
+  // Cloud Functionsのリージョン(asia-northeast1)はindex.js側のsetGlobalOptionsと揃える
+  const functions = getFunctions(app, 'asia-northeast1');
 
   const stateLoading = document.getElementById('state-loading');
   const stateBlocked = document.getElementById('state-blocked');
   const toolList = document.getElementById('tool-list');
   const accountEmail = document.getElementById('account-email');
   const logoutBtn = document.getElementById('logout-btn');
+  const portalBtn = document.getElementById('portal-btn');
+  const portalStatus = document.getElementById('portal-status');
 
   function showLoading(){
     stateLoading.classList.add('active');
@@ -439,6 +476,23 @@
       console.error(err);
     }
     window.location.href = './index.html';
+  });
+
+  // ---- お支払い管理・解約（Stripeカスタマーポータルへ誘導） ----
+  // 解約を「今の請求期間終了時」にするかどうかはStripeダッシュボードの
+  // カスタマーポータル設定側で制御しており、ここでは関与しない。
+  portalBtn.addEventListener('click', async () => {
+    portalBtn.disabled = true;
+    portalStatus.textContent = '処理しています…';
+    try{
+      const createPortalSession = httpsCallable(functions, 'createPortalSession');
+      const result = await createPortalSession();
+      window.location.href = result.data.url;
+    } catch(err){
+      console.error(err);
+      portalStatus.textContent = 'エラーが発生しました。時間をおいて再度お試しください。';
+      portalBtn.disabled = false;
+    }
   });
 </script>
 
