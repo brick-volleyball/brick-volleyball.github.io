@@ -65,11 +65,10 @@
 
      【2026-08-22 追記】
      「動画」セクションに、普段の活動の様子の動画を大会ハイライトの上に追加。
-     各動画の上に「普段の活動の様子」「大会でのハイライト」という見出しを
-     追加したが、この見出しはcontent.js経由ではなくHTMLに直接記述している
-     （content.jsの構成を把握していないため）。将来的にcontent.js側の
-     data-fieldに移行したい場合は、video_caption_1 / video_caption_2 の
-     ようなキーを追加して置き換え可能。
+     各動画の上の見出し（「普段の活動の様子」「大会でのハイライト」）は
+     content.jsのvideo_caption_1 / video_caption_2から取得（data-field）。
+     合わせてvideo_eyebrow / video_title / video_noteの文言も、動画が
+     2種類になったことに合わせてcontent.js側で更新済み。
 
      ★このHTML自体を編集した場合も、上の「最終更新日時」を
        書き換えてください。
@@ -895,14 +894,14 @@
     <p class="section-lead" data-field="video_lead"></p>
 
     <div class="video-block">
-      <p class="video-caption">普段の活動の様子</p>
+      <p class="video-caption" data-field="video_caption_1"></p>
       <div class="video-frame">
         <iframe src="https://www.youtube.com/embed/JHG5y7qeXtQ" title="BRICK 普段の活動の様子" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
 
     <div class="video-block">
-      <p class="video-caption">大会でのハイライト</p>
+      <p class="video-caption" data-field="video_caption_2"></p>
       <div class="video-frame">
         <iframe src="https://www.youtube.com/embed/LvONj_Lu4kc" title="BRICK 試合ハイライト" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
       </div>
@@ -952,7 +951,7 @@
   </div>
 </footer>
 
-<script src="content.js?v=20260811"></script>
+<script src="content.js?v=20260822"></script>
 <script>
   // content.js の値を data-field 属性を持つ要素に流し込む
   function applyContent(){
