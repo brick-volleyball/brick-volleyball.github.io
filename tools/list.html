@@ -8,7 +8,7 @@
 
 <!-- ============================================================
      BRICK ツール一覧ページ
-     最終更新日時: 2026-08-22 06:20 JST
+     最終更新日時: 2026-08-26 13:10 JST
      ------------------------------------------------------------
      index.htmlでログイン・契約確認済みのユーザーにツール一覧を表示。
      直接このページを開かれた場合や、契約が確認できない場合は
@@ -22,6 +22,11 @@
      呼び出し→Stripeのポータルへリダイレクトする。解約は今の請求期間終了時
      になるよう、Stripeダッシュボード側のポータル設定で制御している
      （このファイル側にキャンセルタイミングのロジックは持たない）。
+
+     2026-08-26: 「BRICK ポジション配置」ツールへのリンクを追加
+     (https://brick-volleyball.github.io/brick-position/)。
+     既存の「BRICK 動画クリッパー」カードと同じ形式で一覧に追加しただけで、
+     判定ロジックや他のカードには変更なし。
      ============================================================ -->
 
 <style>
@@ -360,6 +365,15 @@
       <div class="tool-badge">開く ↗</div>
     </a>
 
+    <a class="tool-card is-link" href="https://brick-volleyball.github.io/brick-position/" target="_blank" rel="noopener">
+      <div class="tool-icon">📍</div>
+      <div class="tool-body">
+        <div class="tool-name">BRICK ポジション配置</div>
+        <div class="tool-desc">コート上のメンバー配置を図示して、オーダー表としてPNG保存できます。</div>
+      </div>
+      <div class="tool-badge">開く ↗</div>
+    </a>
+
     <a class="tool-card is-link" href="https://raw.githubusercontent.com/brick-volleyball/brick-volleyball.github.io/main/tools/download/team-wake.apk" download="team-wake.apk">
       <div class="tool-icon">🏐</div>
       <div class="tool-body">
@@ -379,7 +393,7 @@
   <p class="footer-note">
     ツールが開けない・不具合がある場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
   </p>
-  <p class="version-note">v2026-08-22 07:10</p>
+  <p class="version-note">v2026-08-26 13:10</p>
 
 </div>
 
