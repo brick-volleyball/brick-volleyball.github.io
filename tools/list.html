@@ -8,7 +8,7 @@
 
 <!-- ============================================================
      BRICK ツール一覧ページ
-     最終更新日時: 2026-08-26 13:10 JST
+     最終更新日時: 2026-08-27 12:10 JST
      ------------------------------------------------------------
      index.htmlでログイン・契約確認済みのユーザーにツール一覧を表示。
      直接このページを開かれた場合や、契約が確認できない場合は
@@ -27,6 +27,13 @@
      (https://brick-volleyball.github.io/brick-position/)。
      既存の「BRICK 動画クリッパー」カードと同じ形式で一覧に追加しただけで、
      判定ロジックや他のカードには変更なし。
+
+     2026-08-27: 「BRICK リーグ戦集計」ツールへのリンクを追加
+     (https://brick-volleyball.github.io/brick-league/)。既存カードと
+     同じ形式で一覧に追加しただけで、判定ロジックや他のカードには変更なし。
+     なお、brick-league側にもbrick-position-toolと同じ独立アクセスゲート
+     (Firebase Auth + Firestore)を追加済みのため、この一覧を経由せず
+     直接URLへアクセスした場合も同様にサポーター確認が行われる。
      ============================================================ -->
 
 <style>
@@ -374,6 +381,15 @@
       <div class="tool-badge">開く ↗</div>
     </a>
 
+    <a class="tool-card is-link" href="https://brick-volleyball.github.io/brick-league/" target="_blank" rel="noopener">
+      <div class="tool-icon">🏆</div>
+      <div class="tool-body">
+        <div class="tool-name">BRICK リーグ戦集計</div>
+        <div class="tool-desc">リーグ戦の結果を入力すると、勝敗・順位表がリアルタイムに更新されます。</div>
+      </div>
+      <div class="tool-badge">開く ↗</div>
+    </a>
+
     <a class="tool-card is-link" href="https://raw.githubusercontent.com/brick-volleyball/brick-volleyball.github.io/main/tools/download/team-wake.apk" download="team-wake.apk">
       <div class="tool-icon">🏐</div>
       <div class="tool-body">
@@ -393,7 +409,7 @@
   <p class="footer-note">
     ツールが開けない・不具合がある場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
   </p>
-  <p class="version-note">v2026-08-26 13:10</p>
+  <p class="version-note">v2026-08-27 12:10</p>
 
 </div>
 
