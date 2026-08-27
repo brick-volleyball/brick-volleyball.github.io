@@ -8,10 +8,13 @@
 
 <!-- ============================================================
      BRICK ツール 入口ページ
-     最終更新日時: 2026-08-22 08:00 JST
+     最終更新日時: 2026-08-27 13:00 JST
      ------------------------------------------------------------
      Googleログイン → Firebase認証 → Firestoreでサポーター登録状況を確認
      → 登録中ならツール一覧へ、未登録ならStripe決済（サポーター登録）へ誘導
+
+     2026-08-27: 未登録者向けの「サポーターになる」ボタンの下に、
+     「特定商取引法に基づく表記」ページ(./tokushoho.html)へのリンクを追加。
 
      2026-08-22: 表現を「契約／お支払い」から「サポーター登録／サポーターになる」へ変更。
      文言のみの変更で、判定ロジック(Firestoreのstatus/currentPeriodEnd)は不変。
@@ -211,6 +214,17 @@
   }
   .footer-note a{ color: rgba(255,255,255,0.5); }
 
+  .tokushoho-link{
+    margin-top: 10px;
+    text-align: center;
+  }
+  .tokushoho-link a{
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.45);
+    text-decoration: underline;
+  }
+  .tokushoho-link a:hover{ color: rgba(255,255,255,0.75); }
+
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration: 0.01ms !important; }
   }
@@ -247,6 +261,7 @@
   <div class="result-box" id="result-inactive">
     <p id="inactive-message">現在、サポーター登録が確認できませんでした。BRICKサポーターになると、これらのツールをご利用いただけます。</p>
     <a href="https://buy.stripe.com/5kQ14f75z1tG1Ungkt4ZG01" class="btn btn-pay" target="_blank" rel="noopener">サポーターになる</a>
+    <p class="tokushoho-link"><a href="./tokushoho.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a></p>
   </div>
 
   <p class="footer-note">
