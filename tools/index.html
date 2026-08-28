@@ -8,10 +8,17 @@
 
 <!-- ============================================================
      BRICK ツール 入口ページ
-     最終更新日時: 2026-08-27 13:00 JST
+     最終更新日時: 2026-08-27 14:00 JST
      ------------------------------------------------------------
      Googleログイン → Firebase認証 → Firestoreでサポーター登録状況を確認
      → 登録中ならツール一覧へ、未登録ならStripe決済（サポーター登録）へ誘導
+
+     2026-08-27(2回目): 以下2点を変更。
+     ・ホームページ本体の特定商取引法表記リンクは削除し、この入口ページの
+       常時表示フッター(footer-note)に一本化(以前は未登録者向け「サポーター
+       になる」ボタンの下にのみ表示していたが、常に見える場所へ移動)
+     ・ログイン導線の前に、BRICKサポーターについての説明文(支援を募集して
+       いること、支援の御礼としてツールを提供していること)を追加
 
      2026-08-27: 未登録者向けの「サポーターになる」ボタンの下に、
      「特定商取引法に基づく表記」ページ(./tokushoho.html)へのリンクを追加。
@@ -127,6 +134,20 @@
     margin-bottom: 32px;
   }
 
+  .about-box{
+    margin-bottom: 24px;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: rgba(79,195,217,0.08);
+    border: 1px solid rgba(79,195,217,0.25);
+    text-align: left;
+  }
+  .about-box p{
+    font-size: 12.5px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.75);
+  }
+
   #google-signin-btn{
     display: flex;
     justify-content: center;
@@ -214,16 +235,6 @@
   }
   .footer-note a{ color: rgba(255,255,255,0.5); }
 
-  .tokushoho-link{
-    margin-top: 10px;
-    text-align: center;
-  }
-  .tokushoho-link a{
-    font-size: 11.5px;
-    color: rgba(255,255,255,0.45);
-    text-decoration: underline;
-  }
-  .tokushoho-link a:hover{ color: rgba(255,255,255,0.75); }
 
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration: 0.01ms !important; }
@@ -239,6 +250,14 @@
     <span class="l-b">B</span><span class="l-r">R</span><span class="l-i">I</span><span class="l-c">C</span><span class="l-k">K</span>
   </div>
   <div class="eyebrow">SUPPORTERS</div>
+
+  <div class="about-box">
+    <p>
+      BRICKでは、日頃のチーム運営(会場費・道具・大会参加など)を支えてくださる
+      「BRICKサポーター」を募集しています。ご支援いただいた方には、御礼として、
+      チーム運営の中から生まれた各種ツールをご利用いただけます。
+    </p>
+  </div>
 
   <h1>BRICKサポーターとしてログイン</h1>
   <p class="sub">Googleアカウントでログインすると、サポーター登録状況を確認してツール一覧へご案内します。</p>
@@ -261,12 +280,12 @@
   <div class="result-box" id="result-inactive">
     <p id="inactive-message">現在、サポーター登録が確認できませんでした。BRICKサポーターになると、これらのツールをご利用いただけます。</p>
     <a href="https://buy.stripe.com/5kQ14f75z1tG1Ungkt4ZG01" class="btn btn-pay" target="_blank" rel="noopener">サポーターになる</a>
-    <p class="tokushoho-link"><a href="./tokushoho.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a></p>
   </div>
 
   <p class="footer-note">
     ログインすると、サポーター登録確認のためメールアドレスを利用します。<br>
-    お困りの場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
+    お困りの場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。<br>
+    <a href="./tokushoho.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
   </p>
 </div>
 
