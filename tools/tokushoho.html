@@ -19,6 +19,17 @@
   ゲート画面のどこから来たかに応じて遷移先が変わる形に修正。以前は常に
   「Tools一覧」固定だったため、ホームページ本体→本ページ→Tools一覧、という
   一方通行になってしまう問題があった(document.referrerを見て動的に切り替え)。
+
+  2026-08-27(3回目): 上記の修正には見落としがあった。実際にこのページへの
+  リンクを設置しているのは`/tools/index.html`(ログイン画面。「Tools一覧」では
+  なく単なる入口ページ)であり、`/tools/list.html`(本当の意味でのツール一覧)
+  ではない。そのため、`/tools/`から来た場合に表示していた「Tools一覧に戻る」
+  という文言が実態と合っておらず、かつ2回目の修正前のデフォルト表示と偶然
+  同じ見た目になってしまっていたため、「戻るリンクが変わっていないのでは」と
+  ユーザーから指摘があった。`/tools/`(またはその配下の`index.html`)から来た
+  場合は「サポーターページに戻る」、`/tools/list.html`から来た場合(将来設置した
+  場合に備えて)は「Tools一覧に戻る」と、パスに応じてより正確に文言を分けるよう
+  修正。referrerが取得できない場合のデフォルト表示も同様に修正。
 -->
 <!DOCTYPE html>
 <html lang="ja">
@@ -55,7 +66,7 @@
 </head>
 <body>
 <div class="wrap">
-  <a class="back-link" id="backLink" href="https://brick-volleyball.github.io/tools/">← BRICK Tools 一覧に戻る</a>
+  <a class="back-link" id="backLink" href="https://brick-volleyball.github.io/tools/">← BRICKサポーターページに戻る</a>
 
   <h1>特定商取引法に基づく表記</h1>
   <p class="updated">最終更新日: 2026年8月27日</p>
@@ -140,10 +151,15 @@
 </div>
 <script>
   // 「戻る」リンクの遷移先を、実際にどこから来たか(document.referrer)に応じて
-  // 動的に切り替える。ホームページ本体から来た場合はホームページへ、
-  // tools/ 経由やツール単体のゲート画面から来た場合はそのページへ戻す。
-  // referrer が取得できない(直接URLを開いた等)場合は、デフォルトの
-  // 「Tools一覧に戻る」のままにする。
+  // 動的に切り替える。
+  //   ・ホームページ本体(/)から来た場合           → ホームページへ
+  //   ・/tools/ または /tools/index.html から来た場合 → 「サポーターページ」
+  //     (これはログイン画面であり、"Tools一覧"(list.html)ではないので注意)
+  //   ・/tools/list.html など、それ以外の /tools/配下 → 「Tools一覧」
+  //   ・brick-position/brick-league等、ツール単体のゲート画面から来た場合
+  //                                                  → 「元のページ」
+  // referrerが取得できない(直接URLを開いた等)場合は、デフォルトの
+  // 「サポーターページに戻る」(/tools/)のままにする。
   (function(){
     var link = document.getElementById('backLink');
     var ref = document.referrer;
@@ -152,9 +168,12 @@
       var refUrl = new URL(ref);
       if(refUrl.hostname !== 'brick-volleyball.github.io') return;
       link.href = ref;
-      if(refUrl.pathname === '/' || refUrl.pathname === ''){
+      var path = refUrl.pathname;
+      if(path === '/' || path === ''){
         link.textContent = '← BRICKホームページに戻る';
-      } else if(refUrl.pathname.indexOf('/tools/') === 0){
+      } else if(path === '/tools/' || path === '/tools/index.html'){
+        link.textContent = '← BRICKサポーターページに戻る';
+      } else if(path.indexOf('/tools/') === 0){
         link.textContent = '← BRICK Tools 一覧に戻る';
       } else {
         link.textContent = '← 元のページに戻る';
