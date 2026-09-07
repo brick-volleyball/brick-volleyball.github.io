@@ -18,7 +18,7 @@
 
 <!-- ============================================================
      BRICK ツール一覧ページ
-     最終更新日時: 2026-08-27 12:10 JST
+     最終更新日時: 2026-09-08 06:34 JST
      ------------------------------------------------------------
      index.htmlでログイン・契約確認済みのユーザーにツール一覧を表示。
      直接このページを開かれた場合や、契約が確認できない場合は
@@ -44,6 +44,14 @@
      なお、brick-league側にもbrick-position-toolと同じ独立アクセスゲート
      (Firebase Auth + Firestore)を追加済みのため、この一覧を経由せず
      直接URLへアクセスした場合も同様にサポーター確認が行われる。
+
+     2026-09-07: 「BRICK クリップ結合」ツールへのリンクを、「BRICK 動画クリッパー」
+     カードの直後に追加 (https://brick-volleyball.github.io/brick-clipmerger/)。
+     既存カードと同じ形式で一覧に追加しただけで、判定ロジックや他のカードには
+     変更なし。brick-clipmerger側にも他ツールと同じ独立アクセスゲート
+     (Firebase Auth + Firestore、ADMIN_EMAILSでの管理者バイパス込み)を
+     組み込み済みのため、この一覧を経由せず直接URLへアクセスした場合も
+     同様にサポーター確認が行われる。
      ============================================================ -->
 
 <style>
@@ -382,6 +390,15 @@
       <div class="tool-badge">開く ↗</div>
     </a>
 
+    <a class="tool-card is-link" href="https://brick-volleyball.github.io/brick-clipmerger/" target="_blank" rel="noopener">
+      <div class="tool-icon">🎬</div>
+      <div class="tool-body">
+        <div class="tool-name">BRICK クリップ結合</div>
+        <div class="tool-desc">切り出した複数のクリップを、並び替えて1本のmp4動画にまとめられます。</div>
+      </div>
+      <div class="tool-badge">開く ↗</div>
+    </a>
+
     <a class="tool-card is-link" href="https://brick-volleyball.github.io/brick-position/" target="_blank" rel="noopener">
       <div class="tool-icon">📍</div>
       <div class="tool-body">
@@ -419,7 +436,7 @@
   <p class="footer-note">
     ツールが開けない・不具合がある場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
   </p>
-  <p class="version-note">v2026-08-27 12:10</p>
+  <p class="version-note">v2026-09-08 06:34</p>
 
 </div>
 
