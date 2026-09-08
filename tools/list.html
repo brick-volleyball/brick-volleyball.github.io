@@ -18,7 +18,7 @@
 
 <!-- ============================================================
      BRICK ツール一覧ページ
-     最終更新日時: 2026-09-08 06:34 JST
+     最終更新日時: 2026-09-08 17:35 JST
      ------------------------------------------------------------
      index.htmlでログイン・契約確認済みのユーザーにツール一覧を表示。
      直接このページを開かれた場合や、契約が確認できない場合は
@@ -49,6 +49,14 @@
      カードの直後に追加 (https://brick-volleyball.github.io/brick-clipmerger/)。
      既存カードと同じ形式で一覧に追加しただけで、判定ロジックや他のカードには
      変更なし。brick-clipmerger側にも他ツールと同じ独立アクセスゲート
+     (Firebase Auth + Firestore、ADMIN_EMAILSでの管理者バイパス込み)を
+     組み込み済みのため、この一覧を経由せず直接URLへアクセスした場合も
+     同様にサポーター確認が行われる。
+
+     2026-09-08: 「BRICK 得点板」ツールへのリンクを、「チーム分けアプリ(Android)」
+     カードの直前に追加 (https://brick-volleyball.github.io/brick-score/)。
+     既存カードと同じ形式で一覧に追加しただけで、判定ロジックや他のカードには
+     変更なし。brick-score側にも他ツールと同じ独立アクセスゲート
      (Firebase Auth + Firestore、ADMIN_EMAILSでの管理者バイパス込み)を
      組み込み済みのため、この一覧を経由せず直接URLへアクセスした場合も
      同様にサポーター確認が行われる。
@@ -417,6 +425,15 @@
       <div class="tool-badge">開く ↗</div>
     </a>
 
+    <a class="tool-card is-link" href="https://brick-volleyball.github.io/brick-score/" target="_blank" rel="noopener">
+      <div class="tool-icon">🔢</div>
+      <div class="tool-body">
+        <div class="tool-name">BRICK 得点板</div>
+        <div class="tool-desc">試合中の得点・セットカウントを大きく表示できる、電光掲示板風のスコアボードです。</div>
+      </div>
+      <div class="tool-badge">開く ↗</div>
+    </a>
+
     <a class="tool-card is-link" href="https://raw.githubusercontent.com/brick-volleyball/brick-volleyball.github.io/main/tools/download/team-wake.apk" download="team-wake.apk">
       <div class="tool-icon">🏐</div>
       <div class="tool-body">
@@ -436,7 +453,7 @@
   <p class="footer-note">
     ツールが開けない・不具合がある場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。
   </p>
-  <p class="version-note">v2026-09-08 06:34</p>
+  <p class="version-note">v2026-09-08 17:35</p>
 
 </div>
 
