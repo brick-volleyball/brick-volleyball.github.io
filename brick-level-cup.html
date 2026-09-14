@@ -1,0 +1,419 @@
+<!--
+  ============================================================
+  BRICK × LEVEL CUP 大会情報ページ
+  作成日: 2026-09-14
+  ------------------------------------------------------------
+  添付いただいた告知ポスター(BRICK×LEVEL CUP)を元に作成した、
+  BRICKホームページ用の大会情報ページです。単体のHTMLファイルで、
+  ビルド不要・サーバー不要でそのまま公開できます。
+
+  ★このファイルを編集する場合、以下のキーワードで検索すると
+    該当箇所へすぐジャンプできます(このコメントブロックのすぐ下から
+    本文が始まります)。
+
+    [EDIT:開催日]   … 開催日の表示
+    [EDIT:時間]     … 開催時間の表示
+    [EDIT:会場]     … 会場名の表示(2026-09-14時点、湖北THGツインアリーナが
+                       最有力候補だが本予約はまだ未確定。確定したら
+                       「長浜市内の体育館」を実際の会場名に差し替えてください)
+    [EDIT:参加費]   … 参加費・支払い条件の表示
+    [EDIT:ルール]   … 競技ルールの表示
+    [EDIT:ネット]   … ネットの高さの表示
+    [EDIT:リンク]   … 大会Instagram / BRICKメール / BRICK Instagram の
+                       リンク先3つ(現時点の値は下記の通り)
+                       ・大会公式Instagram: https://www.instagram.com/brick_level_cup/
+                       ・BRICKメール: brick.volley@gmail.com
+                       ・BRICK Instagram: https://www.instagram.com/brick_volley/
+
+  更新履歴:
+  2026-09-14: 初版作成。
+  ============================================================
+-->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRICK × LEVEL CUP | BRICK</title>
+<meta name="description" content="2026年12月19日(土)開催、BRICKとlevelの共催バレーボール大会「BRICK×LEVEL CUP」の大会情報ページです。">
+
+<link rel="canonical" href="https://brick-volleyball.github.io/brick-level-cup.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BRICK × LEVEL CUP">
+<meta property="og:description" content="地域のバレーボール愛好者が交流し、楽しめる競技環境を提供する。2026.12.19(土) 開催。">
+<meta property="og:url" content="https://brick-volleyball.github.io/brick-level-cup.html">
+<meta property="og:image" content="https://brick-volleyball.github.io/BRICK_logo.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rye&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700;900&family=Roboto+Condensed:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#0a0a0a;
+    --ink2:#141414;
+    --line: rgba(255,255,255,0.85);
+    --line-soft: rgba(255,255,255,0.22);
+    --white:#f5f5f2;
+    --sub: rgba(245,245,242,0.62);
+    --font-en: "Rye", "Zen Kaku Gothic New", serif;
+    --font-display: "Zen Kaku Gothic New", "Hiragino Sans", "Noto Sans JP", sans-serif;
+    --font-body: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    --font-num: "Roboto Condensed", "Zen Kaku Gothic New", sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{
+    background: var(--ink);
+    color: var(--white);
+    font-family: var(--font-body);
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+  }
+  .bg-grain{
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.05) 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.03) 0%, transparent 60%);
+    z-index: 0;
+  }
+  .wrap{
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 28px 20px 64px;
+  }
+  .back-link{
+    display: inline-block;
+    color: var(--sub);
+    text-decoration: none;
+    font-size: 13px;
+    margin-bottom: 28px;
+  }
+  .back-link:hover{ color: var(--white); }
+
+  /* ---------- Hero ---------- */
+  .hero-note{
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 32px;
+    padding: 14px 16px;
+    border: 1px solid var(--line-soft);
+    border-radius: 14px;
+  }
+  .hero-note svg{ flex: none; width: 22px; height: 22px; margin-top: 1px; }
+  .hero-note p{ font-size: 12.5px; color: var(--sub); line-height: 1.75; }
+
+  .title-block{ text-align: center; margin-bottom: 10px; }
+  .title-en{
+    font-family: var(--font-en);
+    font-size: clamp(48px, 14vw, 76px);
+    line-height: 1.05;
+    letter-spacing: 0.01em;
+    text-shadow: 0 1px 0 rgba(0,0,0,0.5);
+  }
+  .title-divider{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin: 6px auto 8px;
+    max-width: 320px;
+  }
+  .title-divider .rule{ flex: 1; height: 1px; background: var(--line-soft); }
+  .title-divider .rule::before{ content: ""; }
+  .title-divider .x{ font-family: var(--font-en); font-size: 22px; color: var(--sub); }
+  .title-cup{
+    font-family: var(--font-en);
+    font-size: clamp(26px, 7vw, 34px);
+    letter-spacing: 0.06em;
+    color: var(--white);
+  }
+  .title-banner{
+    display: inline-block;
+    margin: 22px auto 36px;
+    padding: 10px 22px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14px;
+    text-align: center;
+  }
+  .title-banner-wrap{ text-align: center; }
+
+  /* ---------- Info cards ---------- */
+  .card{
+    border: 1.5px solid var(--line);
+    border-radius: 20px;
+    padding: 18px 22px;
+    margin-bottom: 14px;
+  }
+  .card-row{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .card-icon{
+    flex: none;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-icon svg{ width: 24px; height: 24px; }
+  .card-label{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12.5px;
+    color: var(--sub);
+    margin-bottom: 4px;
+  }
+  .card-value{
+    font-family: var(--font-num);
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: 0.01em;
+  }
+  .card-value .day{
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    margin-left: 4px;
+  }
+  .card-value.text{
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .card-note{
+    margin-top: 10px;
+    font-size: 12.5px;
+    color: var(--sub);
+    line-height: 1.7;
+  }
+
+  .card-grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  @media (min-width: 480px){
+    .card-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  .card-grid .card{ margin-bottom: 0; }
+
+  .net-split{
+    display: flex;
+    gap: 16px;
+  }
+  .net-split > div{ flex: 1; }
+  .net-split .k{ font-size: 12px; color: var(--sub); margin-bottom: 4px; }
+  .net-split .v{ font-family: var(--font-num); font-weight: 900; font-size: 19px; }
+  .net-split > .net-divider{ flex: none; width: 1px; background: var(--line-soft); }
+
+  .section-gap{ height: 28px; }
+
+  /* ---------- Contact / links ---------- */
+  .contact-title{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 14px;
+    text-align: center;
+  }
+  .link-btn{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 15px 18px;
+    margin-bottom: 12px;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--ink);
+    background: var(--white);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 14.5px;
+    transition: transform .15s ease, opacity .15s ease;
+  }
+  .link-btn:hover{ transform: translateY(-2px); opacity: 0.92; }
+  .link-btn.outline{
+    background: transparent;
+    color: var(--white);
+    border: 1.5px solid var(--line);
+  }
+  .link-btn svg{ flex: none; width: 20px; height: 20px; }
+  .link-btn .sub{
+    display: block;
+    font-weight: 400;
+    font-size: 11.5px;
+    opacity: 0.6;
+    margin-top: 2px;
+  }
+
+  .footer-note{
+    margin-top: 36px;
+    text-align: center;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.35);
+    line-height: 1.8;
+  }
+  .footer-note a{ color: rgba(255,255,255,0.5); }
+</style>
+</head>
+<body>
+<div class="bg-grain"></div>
+<div class="wrap">
+
+  <a class="back-link" href="https://brick-volleyball.github.io/">← BRICKホームページに戻る</a>
+
+  <div class="hero-note">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 3c2.5 2.5 2.5 15.5 0 18M3.5 8.5c3.5 2 13.5 2 17 0M3.5 15.5c3.5-2 13.5-2 17 0"/></svg>
+    <p>地域のバレーボール愛好者が交流し、楽しめる競技環境を提供する。</p>
+  </div>
+
+  <div class="title-block">
+    <div class="title-en">BRICK</div>
+    <div class="title-divider"><span class="rule"></span><span class="x">×</span><span class="rule"></span></div>
+    <div class="title-en" style="font-size: clamp(40px, 11vw, 60px);">LEVEL</div>
+    <div class="title-cup">CUP</div>
+  </div>
+
+  <div class="title-banner-wrap">
+    <span class="title-banner">地域のバレー好きがつながる1日!</span>
+  </div>
+
+  <!-- [EDIT:開催日] -->
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+      </div>
+      <div>
+        <div class="card-label">開催日</div>
+        <div class="card-value">2026.12.19<span class="day">(土)</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- [EDIT:時間] -->
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+      </div>
+      <div>
+        <div class="card-label">時間</div>
+        <div class="card-value">08:30 - 17:30</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- [EDIT:会場] -->
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.3"/></svg>
+      </div>
+      <div>
+        <div class="card-label">会場</div>
+        <div class="card-value text">長浜市内の体育館</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <div class="card-grid">
+    <!-- [EDIT:ルール] -->
+    <div class="card">
+      <div class="card-label" style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.6" width="18" height="18"><circle cx="12" cy="12" r="9"/><path d="M12 3c2.5 2.5 2.5 15.5 0 18M3.5 8.5c3.5 2 13.5 2 17 0M3.5 15.5c3.5-2 13.5-2 17 0"/></svg>
+        競技ルール
+      </div>
+      <div class="card-value text" style="font-size:15px; font-weight:700;">男子・女子 6人制ルール</div>
+      <div class="card-note">(ラリーポイント、ローテーションあり)</div>
+    </div>
+
+    <!-- [EDIT:ネット] -->
+    <div class="card">
+      <div class="card-label" style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.6" width="18" height="18"><path d="M4 4v16M20 4v16M4 8h16M4 12h16M4 16h16"/></svg>
+        ネットの高さ
+      </div>
+      <div class="net-split">
+        <div>
+          <div class="k">Xリーグ(上級者向け)</div>
+          <div class="v">2m35cm</div>
+        </div>
+        <div class="net-divider"></div>
+        <div>
+          <div class="k">オープンリーグ(女子向け)</div>
+          <div class="v">2m10cm</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- [EDIT:参加費] -->
+  <div class="card">
+    <div class="card-row">
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M8 7l4 6 4-6M12 13v5M9.5 15h5"/></svg>
+      </div>
+      <div>
+        <div class="card-label">参加費</div>
+        <div class="card-value">1チーム 6,000円</div>
+      </div>
+    </div>
+    <div class="card-note">※事前払いとする、キャンセル時の返金不可</div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- [EDIT:リンク] -->
+  <div class="contact-title">お問い合わせ・最新情報</div>
+
+  <a class="link-btn" href="https://www.instagram.com/brick_level_cup/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink)" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    <span>
+      大会公式Instagramを見る
+      <span class="sub">@brick_level_cup ・ 最新情報・エントリーはこちら</span>
+    </span>
+  </a>
+
+  <a class="link-btn outline" href="mailto:brick.volley@gmail.com">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+    <span>
+      BRICKにメールで問い合わせる
+      <span class="sub">brick.volley@gmail.com</span>
+    </span>
+  </a>
+
+  <a class="link-btn outline" href="https://www.instagram.com/brick_volley/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="var(--white)" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+    <span>
+      BRICK公式Instagramを見る
+      <span class="sub">@brick_volley</span>
+    </span>
+  </a>
+
+  <p class="footer-note">
+    BRICK × LEVEL CUP は、BRICKとlevel(協力チーム)の共催で開催します。<br>
+    お問い合わせは <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> まで。<br>
+    最終更新日: 2026年9月14日
+  </p>
+
+</div>
+</body>
+</html>
