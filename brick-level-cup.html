@@ -19,6 +19,8 @@
     [EDIT:参加費]   … 参加費・支払い条件の表示
     [EDIT:ルール]   … 競技ルールの表示
     [EDIT:ネット]   … ネットの高さの表示
+    [EDIT:男子エントリー] … 男子リーグ エントリー終了のお知らせ(募集を
+                       再開する場合はこのブロックを削除してください)
     [EDIT:リンク]   … 大会Instagram / BRICKメール / BRICK Instagram の
                        リンク先3つ(現時点の値は下記の通り)
                        ・大会公式Instagram: https://www.instagram.com/brick_level_cup/
@@ -27,6 +29,11 @@
 
   更新履歴:
   2026-09-14: 初版作成。
+  2026-09-14: 男子リーグのエントリー受付終了のお知らせを追加。
+              あわせて、ネットの高さカードのリーグ名表記を
+              「Xリーグ/オープンリーグ」→「男子リーグ/女子リーグ」に統一
+              (2026-09-05のリーグ名称変更に合わせて、告知ポスター作成時に
+              残っていた旧名称を修正)。
   ============================================================
 -->
 <!DOCTYPE html>
@@ -146,6 +153,32 @@
     text-align: center;
   }
   .title-banner-wrap{ text-align: center; }
+
+  /* ---------- Notice box ---------- */
+  .notice-box{
+    border: 1.5px solid var(--line);
+    background: rgba(245,245,242,0.06);
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 22px;
+    text-align: center;
+  }
+  .notice-label{
+    display: inline-block;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 12.5px;
+    letter-spacing: 0.03em;
+    padding: 4px 14px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    margin-bottom: 10px;
+  }
+  .notice-text{
+    font-size: 13px;
+    color: var(--sub);
+    line-height: 1.7;
+  }
 
   /* ---------- Info cards ---------- */
   .card{
@@ -291,6 +324,12 @@
     <span class="title-banner">地域のバレー好きがつながる1日!</span>
   </div>
 
+  <!-- [EDIT:男子エントリー] -->
+  <div class="notice-box">
+    <div class="notice-label">男子リーグ エントリー受付終了</div>
+    <p class="notice-text">たくさんのお申込みをいただき、男子リーグの参加チーム募集は終了しました。<br>ご応募いただいた皆さま、ありがとうございました。</p>
+  </div>
+
   <!-- [EDIT:開催日] -->
   <div class="card">
     <div class="card-row">
@@ -351,12 +390,12 @@
       </div>
       <div class="net-split">
         <div>
-          <div class="k">Xリーグ(上級者向け)</div>
+          <div class="k">男子リーグ</div>
           <div class="v">2m35cm</div>
         </div>
         <div class="net-divider"></div>
         <div>
-          <div class="k">オープンリーグ(女子向け)</div>
+          <div class="k">女子リーグ</div>
           <div class="v">2m10cm</div>
         </div>
       </div>
@@ -411,7 +450,7 @@
   <p class="footer-note">
     BRICK × LEVEL CUP は、BRICKとlevel(協力チーム)の共催で開催します。<br>
     お問い合わせは <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> まで。<br>
-    最終更新日: 2026年9月14日
+    最終更新日: 2026年9月14日(男子リーグ エントリー受付終了)
   </p>
 
 </div>

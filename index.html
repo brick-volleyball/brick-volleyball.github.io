@@ -202,6 +202,40 @@
     .nav-links{ display:none; }
   }
 
+  /* ---------- Announcement bar (大会ページ告知) ---------- */
+  .announce-bar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 64px;
+    padding: 12px 20px;
+    background: var(--turquoise-light);
+    color: var(--navy);
+    text-align: center;
+    font-size: 13.5px;
+    font-weight: 700;
+    line-height: 1.5;
+    border-bottom: 1px solid var(--turquoise);
+    transition: background .2s ease;
+  }
+  .announce-bar:hover{ background: var(--turquoise); }
+  .announce-badge{
+    flex: none;
+    background: var(--orange);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    padding: 2px 9px;
+    border-radius: 999px;
+  }
+  .announce-arrow{ font-weight: 900; }
+  @media (max-width: 480px){
+    .announce-bar{ font-size: 12.5px; padding: 10px 14px; }
+  }
+
   /* ---------- Hero ---------- */
   .hero{
     position: relative;
@@ -217,7 +251,6 @@
     background-position: center;
     color: #fff;
     overflow:hidden;
-    padding-top: 64px;
   }
 
   .hero-net{
@@ -771,6 +804,14 @@
     <a href="#join" class="nav-cta" data-field="nav_cta_label"></a>
   </div>
 </nav>
+
+<!-- 大会告知バナー(2026-09-14追加。大会ページ公開のお知らせ。
+     大会が終了したら、このブロックごと削除してください) -->
+<a href="/brick-level-cup.html" class="announce-bar">
+  <span class="announce-badge">NEW</span>
+  <span>大会情報ページを公開しました！「BRICK × LEVEL CUP」の詳細はこちら</span>
+  <span class="announce-arrow">→</span>
+</a>
 
 <header class="hero">
   <div class="hero-net"></div>
