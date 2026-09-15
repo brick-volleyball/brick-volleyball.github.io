@@ -202,14 +202,16 @@
     .nav-links{ display:none; }
   }
 
-  /* ---------- Announcement bar (大会ページ告知) ---------- */
+  /* ---------- Announcement bar (大会ページ告知 / VSAP告知) ---------- */
+  .announce-stack{
+    margin-top: 64px;
+  }
   .announce-bar{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-    margin-top: 64px;
     padding: 12px 20px;
     background: var(--turquoise-light);
     color: var(--navy);
@@ -232,6 +234,12 @@
     border-radius: 999px;
   }
   .announce-arrow{ font-weight: 900; }
+  .announce-bar.variant-b{
+    background: rgba(232,112,58,0.10);
+    border-bottom-color: var(--orange);
+  }
+  .announce-bar.variant-b:hover{ background: rgba(232,112,58,0.18); }
+  .announce-bar.variant-b .announce-badge{ background: var(--navy); }
   @media (max-width: 480px){
     .announce-bar{ font-size: 12.5px; padding: 10px 14px; }
   }
@@ -805,13 +813,22 @@
   </div>
 </nav>
 
-<!-- 大会告知バナー(2026-09-14追加。大会ページ公開のお知らせ。
-     大会が終了したら、このブロックごと削除してください) -->
-<a href="/brick-level-cup.html" class="announce-bar">
-  <span class="announce-badge">NEW</span>
-  <span>大会情報ページを公開しました！「BRICK × LEVEL CUP」の詳細はこちら</span>
-  <span class="announce-arrow">→</span>
-</a>
+<div class="announce-stack">
+  <!-- 大会告知バナー(2026-09-14追加。大会ページ公開のお知らせ。
+       大会が終了したら、このブロックごと削除してください) -->
+  <a href="/brick-level-cup.html" class="announce-bar">
+    <span class="announce-badge">NEW</span>
+    <span>大会情報ページを公開しました！「BRICK × LEVEL CUP」の詳細はこちら</span>
+    <span class="announce-arrow">→</span>
+  </a>
+
+  <!-- VSAP限定ウェア告知バナー(2026-09-15追加。募集終了(9/30)後は、このブロックごと削除してください) -->
+  <a href="/vsap/" class="announce-bar variant-b">
+    <span class="announce-badge">受付中</span>
+    <span>VSAP限定ウェア 受注販売を開始しました！応募締切 9/30</span>
+    <span class="announce-arrow">→</span>
+  </a>
+</div>
 
 <header class="hero">
   <div class="hero-net"></div>
