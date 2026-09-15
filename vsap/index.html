@@ -1,0 +1,837 @@
+<title>VSAP限定ウェア 受注販売</title>
+<meta name="description" content="BRICKバレーボールチームのオリジナルウェア「VSAP」受注販売ページ。9月30日締切、メールで簡単注文。">
+<style>
+  :root{
+    color-scheme: dark;
+    --ink:#111216;
+    --ink-deep:#0a0a0d;
+    --panel:#1a1b21;
+    --panel2:#212229;
+    --line: rgba(243,241,236,0.12);
+    --line-strong: rgba(243,241,236,0.22);
+    --paper:#F3F1EC;
+    --paper-dim: rgba(243,241,236,0.66);
+    --paper-faint: rgba(243,241,236,0.42);
+    --mint:#4FE3C4;
+    --mint-deep:#2FBF9F;
+    --lavender:#A78BFA;
+    --lavender-deep:#8A69EC;
+    --flame:#FF7A3D;
+    --flame-deep:#E85A1C;
+
+    --font-display: "Big Shoulders Display", "Zen Kaku Gothic New", sans-serif;
+    --font-body: "Zen Kaku Gothic New", "Hiragino Sans", sans-serif;
+    --font-num: "Roboto Condensed", "Zen Kaku Gothic New", sans-serif;
+  }
+
+  *{ box-sizing: border-box; }
+  body{
+    margin:0;
+    background: var(--ink);
+    color: var(--paper);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  img{ max-width:100%; display:block; }
+
+  .wrap{
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 20px 96px;
+  }
+
+  a{ color: inherit; }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 20px;
+    max-width: 760px;
+    margin: 0 auto;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.04em;
+  }
+  .topbar .brand{
+    display:flex; align-items:center; gap:8px;
+  }
+  .topbar .dot{ width:7px; height:7px; border-radius:50%; background: var(--mint); flex:none; }
+  .topbar .back{
+    font-family: var(--font-body);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--paper-dim);
+    text-decoration:none;
+    border: 1px solid var(--line-strong);
+    padding: 6px 12px;
+    border-radius: 999px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding: 20px 0 8px;
+  }
+  .hero-eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family: var(--font-num);
+    font-weight: 700;
+    font-size: 12.5px;
+    letter-spacing: 0.14em;
+    color: var(--mint);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width: 22px; height: 1.5px;
+    background: var(--mint);
+  }
+  .hero h1{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(44px, 12vw, 68px);
+    line-height: 0.92;
+    letter-spacing: 0.01em;
+    margin: 0 0 6px;
+    text-wrap: balance;
+  }
+  .hero h1 .sub-line{
+    display:block;
+    font-size: 0.42em;
+    font-family: var(--font-body);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--paper);
+    margin-top: 8px;
+  }
+  .hero h1 .accent{ color: var(--mint); }
+  .hero p.lede{
+    font-size: 15px;
+    line-height: 1.8;
+    color: var(--paper-dim);
+    max-width: 46ch;
+    margin: 18px 0 0;
+  }
+
+  /* ---------- Deadline strip ---------- */
+  .deadline{
+    margin-top: 26px;
+    border: 1.5px dashed var(--flame);
+    background: linear-gradient(180deg, rgba(255,122,61,0.10), rgba(255,122,61,0.03));
+    border-radius: 16px;
+    padding: 18px 20px;
+    display:flex;
+    align-items:center;
+    gap: 14px;
+  }
+  .deadline .icon{
+    flex:none;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    background: var(--flame);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .deadline .icon svg{ width:20px; height:20px; }
+  .deadline-text .k{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--flame);
+    letter-spacing: 0.01em;
+  }
+  .deadline-text .v{
+    font-size: 12.5px;
+    color: var(--paper-dim);
+    line-height: 1.6;
+    margin-top: 2px;
+  }
+
+  /* ---------- Schedule ---------- */
+  .schedule{
+    margin-top: 44px;
+  }
+  .section-label{
+    font-family: var(--font-num);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 10px;
+  }
+  .section-title{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(26px, 6vw, 34px);
+    margin: 0 0 22px;
+    text-wrap: balance;
+  }
+  .steps{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 560px){
+    .steps{ grid-template-columns: 1fr; }
+  }
+  .step{
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 16px;
+    padding: 20px 18px;
+    position: relative;
+  }
+  .step.active{
+    border-color: var(--mint);
+    background: linear-gradient(180deg, rgba(79,227,196,0.10), rgba(79,227,196,0.02));
+  }
+  .step .num{
+    font-family: var(--font-num);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--paper-faint);
+    letter-spacing: 0.06em;
+  }
+  .step.active .num{ color: var(--mint); }
+  .step .label{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 21px;
+    margin-top: 8px;
+  }
+  .step .desc{
+    font-size: 12.5px;
+    color: var(--paper-dim);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
+  /* ---------- Product sections ---------- */
+  .products{ margin-top: 56px; }
+  .product{
+    margin-top: 44px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--panel);
+  }
+  .product-img{
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background: var(--panel2);
+    border-bottom: 1px solid var(--line);
+  }
+  .product-body{ padding: 22px 22px 24px; }
+  .product-kicker{
+    font-family: var(--font-num);
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--paper-faint);
+  }
+  .product-name{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(24px, 6vw, 30px);
+    margin: 4px 0 2px;
+    text-wrap: balance;
+  }
+  .product-price{
+    font-family: var(--font-num);
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--mint);
+    margin-top: 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .product-price .unit{
+    font-size: 12px;
+    color: var(--paper-faint);
+    font-family: var(--font-body);
+    font-weight: 500;
+    margin-left: 6px;
+  }
+
+  .colorways{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+  }
+  .colorway{
+    display:flex;
+    align-items:center;
+    gap: 7px;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    padding: 6px 12px 6px 8px;
+    font-size: 12.5px;
+    font-weight: 700;
+  }
+  .swatch{
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    flex: none;
+  }
+
+  .spec-note{
+    font-size: 11.5px;
+    color: var(--paper-faint);
+    margin-top: 16px;
+  }
+  table.sizes{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-family: var(--font-num);
+    font-variant-numeric: tabular-nums;
+    font-size: 12.5px;
+  }
+  table.sizes th, table.sizes td{
+    text-align: right;
+    padding: 7px 4px;
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  table.sizes th:first-child, table.sizes td:first-child{
+    text-align: left;
+    font-family: var(--font-body);
+    font-weight: 700;
+  }
+  table.sizes th{
+    color: var(--paper-faint);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+  }
+  .sizes-scroll{ overflow-x: auto; }
+
+  /* ---------- Order builder ---------- */
+  .order{ margin-top: 60px; }
+  .order-panel{
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: var(--panel);
+    padding: 24px 22px 26px;
+  }
+  .field{
+    margin-bottom: 16px;
+  }
+  .field label{
+    display:block;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--paper-dim);
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+  }
+  .field select, .field input{
+    width: 100%;
+    background: var(--panel2);
+    border: 1px solid var(--line-strong);
+    border-radius: 10px;
+    padding: 11px 12px;
+    font-size: 14.5px;
+    font-family: var(--font-body);
+    color: var(--paper);
+    appearance: none;
+  }
+  .field select:focus, .field input:focus{
+    outline: 2px solid var(--mint);
+    outline-offset: 1px;
+  }
+  .field.select-wrap{ position: relative; }
+  .field.select-wrap::after{
+    content:"▾";
+    position:absolute;
+    right: 14px; bottom: 13px;
+    color: var(--paper-faint);
+    pointer-events:none;
+    font-size: 12px;
+  }
+  .row2{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 480px){
+    .row2{ grid-template-columns: 1fr; }
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap: 8px;
+    border: none;
+    border-radius: 999px;
+    padding: 13px 22px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14.5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  .btn-add{
+    background: var(--panel2);
+    color: var(--paper);
+    border: 1px solid var(--line-strong);
+  }
+  .btn-add:hover{ border-color: var(--mint); color: var(--mint); }
+  .btn-send{
+    background: var(--mint);
+    color: var(--ink-deep);
+    margin-top: 18px;
+  }
+  .btn-send:hover{ background: var(--mint-deep); }
+  .btn-send:disabled{
+    background: var(--panel2);
+    color: var(--paper-faint);
+    cursor: not-allowed;
+  }
+
+  .cart{
+    margin-top: 22px;
+    border-top: 1px solid var(--line);
+    padding-top: 16px;
+  }
+  .cart-empty{
+    font-size: 13px;
+    color: var(--paper-faint);
+    padding: 6px 0;
+  }
+  .cart-line{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 13.5px;
+  }
+  .cart-line:last-child{ border-bottom:none; }
+  .cart-line .desc{ line-height: 1.5; }
+  .cart-line .desc b{ font-weight: 700; }
+  .cart-line .desc span{ color: var(--paper-faint); }
+  .cart-line button{
+    flex: none;
+    background: none;
+    border: 1px solid var(--line-strong);
+    color: var(--paper-faint);
+    border-radius: 999px;
+    width: 26px; height: 26px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .cart-line button:hover{ color: var(--flame); border-color: var(--flame); }
+
+  .cart-total{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line-strong);
+    font-family: var(--font-num);
+  }
+  .cart-total .k{ font-size: 12.5px; color: var(--paper-dim); font-family: var(--font-body); font-weight:700; }
+  .cart-total .v{ font-size: 21px; font-weight: 700; color: var(--mint); font-variant-numeric: tabular-nums; }
+
+  .order-hint{
+    font-size: 11.5px;
+    color: var(--paper-faint);
+    line-height: 1.7;
+    margin-top: 16px;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    margin-top: 64px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--paper-faint);
+    line-height: 1.9;
+    text-align: center;
+  }
+  footer .brand-mark{
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--paper);
+    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+  }
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
+<div class="topbar">
+  <div class="brand"><span class="dot"></span>VSAP</div>
+  <a class="back" href="https://brick-volleyball.github.io/">← BRICKへ戻る</a>
+</div>
+
+<div class="wrap">
+
+  <section class="hero">
+    <div class="hero-eyebrow">Limited Order · BRICK × Oriental Witches</div>
+    <h1>VSAP<span class="sub-line">限定ウェア<span class="accent">受注販売</span></span></h1>
+    <p class="lede">「VSAP」は、バレーボールウェアブランド Oriental Witches がバレーボールチームを支援するために展開するプロジェクト。定期的に限定デザインのウェアを企画し、チームごとに販売した売上をチームへ還元する仕組みです。BRICKもこの取り組みに賛同し、今回はドライフィットパーカー&ロングパンツ、長袖シャツの全4型・全10カラーを受注生産で販売します。数量限定、この募集期間内のみのお申し込みです。</p>
+  </section>
+
+  <div class="deadline">
+    <div class="icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--ink-deep)" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+    </div>
+    <div class="deadline-text">
+      <div class="k">応募締切 9月30日まで</div>
+      <div class="v">受注生産のため、期限を過ぎるとお申し込みいただけません。入金確認までが期限内です。</div>
+    </div>
+  </div>
+
+  <section class="schedule">
+    <div class="section-label">Schedule</div>
+    <h2 class="section-title">販売スケジュール</h2>
+    <div class="steps">
+      <div class="step active">
+        <div class="num">STEP 1</div>
+        <div class="label">〜9/30</div>
+        <div class="desc">募集 & 入金<br>メールでお申し込み・お振込み</div>
+      </div>
+      <div class="step">
+        <div class="num">STEP 2</div>
+        <div class="label">10月上旬</div>
+        <div class="desc">発注<br>締切分をまとめて工場へ発注</div>
+      </div>
+      <div class="step">
+        <div class="num">STEP 3</div>
+        <div class="label">11月上旬</div>
+        <div class="desc">出荷予定<br>お届け・お渡し</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="products">
+    <div class="section-label">Lineup</div>
+    <h2 class="section-title">アイテム一覧</h2>
+
+    <article class="product" id="product-hoodie">
+      <img class="product-img" src="assets/product-hoodie.jpg" alt="ドライフィットスウェットパーカー ブラック・グレー">
+      <div class="product-body">
+        <div class="product-kicker">01 · Outer</div>
+        <div class="product-name">ドライフィットスウェットパーカー</div>
+        <div class="product-price">¥6,000<span class="unit">税込 / 枚</span></div>
+        <div class="colorways">
+          <div class="colorway"><span class="swatch" style="background:#111"></span>ブラック(ミントグリーン×パープル)</div>
+          <div class="colorway"><span class="swatch" style="background:#c7c7c7"></span>グレー(ミントグリーン×パープル)</div>
+        </div>
+        <div class="spec-note">サイズ表(身丈×身巾×肩巾×袖丈 cm)</div>
+        <div class="sizes-scroll">
+          <table class="sizes">
+            <tr><th>サイズ</th><th>身丈</th><th>身巾</th><th>肩巾</th><th>袖丈</th></tr>
+            <tr><td>S</td><td>64</td><td>49</td><td>42</td><td>60</td></tr>
+            <tr><td>M</td><td>67</td><td>52</td><td>44</td><td>62</td></tr>
+            <tr><td>L</td><td>70</td><td>55</td><td>46</td><td>63</td></tr>
+            <tr><td>LL</td><td>73</td><td>58</td><td>48</td><td>65</td></tr>
+            <tr><td>3L</td><td>76</td><td>61</td><td>50</td><td>65</td></tr>
+          </table>
+        </div>
+      </div>
+    </article>
+
+    <article class="product" id="product-pants">
+      <img class="product-img" src="assets/product-pants.jpg" alt="ドライフィットスウェットロングパンツ ブラック・グレー">
+      <div class="product-body">
+        <div class="product-kicker">02 · Bottoms</div>
+        <div class="product-name">ドライフィットスウェットロングパンツ</div>
+        <div class="product-price">¥5,500<span class="unit">税込 / 枚</span></div>
+        <div class="colorways">
+          <div class="colorway"><span class="swatch" style="background:#111"></span>ブラック(ミントグリーン×パープル)</div>
+          <div class="colorway"><span class="swatch" style="background:#c7c7c7"></span>グレー(ミントグリーン×パープル)</div>
+        </div>
+        <div class="spec-note">サイズ表(総丈×ウエスト×股下 cm)</div>
+        <div class="sizes-scroll">
+          <table class="sizes">
+            <tr><th>サイズ</th><th>総丈</th><th>ウエスト</th><th>股下</th></tr>
+            <tr><td>S</td><td>96</td><td>70〜78</td><td>69</td></tr>
+            <tr><td>M</td><td>99</td><td>74〜82</td><td>71</td></tr>
+            <tr><td>L</td><td>102</td><td>77〜85</td><td>73</td></tr>
+            <tr><td>LL</td><td>104</td><td>80〜88</td><td>74</td></tr>
+            <tr><td>3L</td><td>105</td><td>83〜91</td><td>74</td></tr>
+          </table>
+        </div>
+      </div>
+    </article>
+
+    <article class="product" id="product-tee-a">
+      <img class="product-img" src="assets/product-tee-a.jpg" alt="長袖シャツ パターンA ホワイト・パープル・ネイビー">
+      <div class="product-body">
+        <div class="product-kicker">03 · Long Sleeve · Pattern A</div>
+        <div class="product-name">長袖シャツ(パターンA)</div>
+        <div class="product-price">¥3,700<span class="unit">税込 / 枚</span></div>
+        <div class="colorways">
+          <div class="colorway"><span class="swatch" style="background:#f4f4f0"></span>ホワイト(ミントグリーン×ラベンダー)</div>
+          <div class="colorway"><span class="swatch" style="background:#3a2350"></span>パープル(ミントグリーン×ラベンダー)</div>
+          <div class="colorway"><span class="swatch" style="background:#1b2a52"></span>ネイビー(ミントグリーン×ラベンダー)</div>
+        </div>
+        <div class="spec-note">サイズ表(身丈×身巾×肩巾×袖丈 cm)</div>
+        <div class="sizes-scroll">
+          <table class="sizes">
+            <tr><th>サイズ</th><th>身丈</th><th>身巾</th><th>肩巾</th><th>袖丈</th></tr>
+            <tr><td>SS</td><td>62</td><td>44</td><td>42</td><td>57</td></tr>
+            <tr><td>S</td><td>65</td><td>47</td><td>44</td><td>59</td></tr>
+            <tr><td>M</td><td>68</td><td>50</td><td>46</td><td>60</td></tr>
+            <tr><td>L</td><td>71</td><td>53</td><td>48</td><td>61</td></tr>
+            <tr><td>LL</td><td>74</td><td>56</td><td>50</td><td>62</td></tr>
+            <tr><td>3L</td><td>77</td><td>60</td><td>53</td><td>63</td></tr>
+          </table>
+        </div>
+      </div>
+    </article>
+
+    <article class="product" id="product-tee-b">
+      <img class="product-img" src="assets/product-tee-b.jpg" alt="長袖シャツ パターンB レッド・アーミーグリーン・ブラック">
+      <div class="product-body">
+        <div class="product-kicker">04 · Long Sleeve · Pattern B</div>
+        <div class="product-name">長袖シャツ(パターンB)</div>
+        <div class="product-price">¥3,700<span class="unit">税込 / 枚</span></div>
+        <div class="colorways">
+          <div class="colorway"><span class="swatch" style="background:#c2242c"></span>レッド(サファリ×ホワイト)</div>
+          <div class="colorway"><span class="swatch" style="background:#2e4a29"></span>アーミーグリーン(サファリ×ホワイト)</div>
+          <div class="colorway"><span class="swatch" style="background:#111"></span>ブラック(サファリ×ホワイト)</div>
+        </div>
+        <div class="spec-note">サイズ表(身丈×身巾×肩巾×袖丈 cm)</div>
+        <div class="sizes-scroll">
+          <table class="sizes">
+            <tr><th>サイズ</th><th>身丈</th><th>身巾</th><th>肩巾</th><th>袖丈</th></tr>
+            <tr><td>SS</td><td>62</td><td>44</td><td>42</td><td>57</td></tr>
+            <tr><td>S</td><td>65</td><td>47</td><td>44</td><td>59</td></tr>
+            <tr><td>M</td><td>68</td><td>50</td><td>46</td><td>60</td></tr>
+            <tr><td>L</td><td>71</td><td>53</td><td>48</td><td>61</td></tr>
+            <tr><td>LL</td><td>74</td><td>56</td><td>50</td><td>62</td></tr>
+            <tr><td>3L</td><td>77</td><td>60</td><td>53</td><td>63</td></tr>
+          </table>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="order">
+    <div class="section-label">Order</div>
+    <h2 class="section-title">メールでお申し込み</h2>
+    <p class="lede" style="margin-top:-8px;">アイテムを選んで「注文リストに追加」→ 必要な分だけ追加したら、下のボタンからメールアプリが開きます。内容を確認のうえ、そのまま送信してください。</p>
+
+    <div class="order-panel">
+      <div class="field select-wrap">
+        <label for="f-item">アイテム</label>
+        <select id="f-item"></select>
+      </div>
+      <div class="row2">
+        <div class="field select-wrap">
+          <label for="f-color">カラー</label>
+          <select id="f-color"></select>
+        </div>
+        <div class="field select-wrap">
+          <label for="f-size">サイズ</label>
+          <select id="f-size"></select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-qty">数量</label>
+        <input type="number" id="f-qty" min="1" value="1" inputmode="numeric">
+      </div>
+      <button class="btn btn-add" id="btn-add" type="button">+ 注文リストに追加</button>
+
+      <div class="cart" id="cart">
+        <div class="cart-empty" id="cart-empty">まだ注文リストは空です。上のフォームからアイテムを追加してください。</div>
+      </div>
+
+      <div class="cart-total" id="cart-total" hidden>
+        <div class="k">合計金額(税込)</div>
+        <div class="v" id="cart-total-v">¥0</div>
+      </div>
+
+      <div class="field" style="margin-top:22px;">
+        <label for="f-name">お名前</label>
+        <input type="text" id="f-name" placeholder="例: 山田 太郎">
+      </div>
+      <div class="field">
+        <label for="f-pay">お支払い予定日・お支払い方法</label>
+        <input type="text" id="f-pay" placeholder="例: 9/25までに現金でお渡し / 9/20頃振込予定 など">
+      </div>
+
+      <button class="btn btn-send" id="btn-send" type="button" disabled>メールでお申し込みへ進む</button>
+      <div class="order-hint">送信先: brick.volley@gmail.com ／ ボタンを押すとお使いのメールアプリが開き、注文内容があらかじめ入力された状態になります。内容をご確認のうえ送信してください。応募締切は9/30です。</div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brand-mark">VSAP × BRICK</div>
+    VSAPは Oriental Witches がバレーボールチームを支援するプロジェクトです。<br>
+    BRICK バレーボールチーム(滋賀県長浜市)が本プロジェクトに賛同し、販売を行っています。<br>
+    お問い合わせ: <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var PRODUCTS = [
+    {
+      id: "hoodie",
+      name: "ドライフィットスウェットパーカー",
+      price: 6000,
+      colors: ["ブラック(ミントグリーン×パープル)", "グレー(ミントグリーン×パープル)"],
+      sizes: ["S", "M", "L", "LL", "3L"]
+    },
+    {
+      id: "pants",
+      name: "ドライフィットスウェットロングパンツ",
+      price: 5500,
+      colors: ["ブラック(ミントグリーン×パープル)", "グレー(ミントグリーン×パープル)"],
+      sizes: ["S", "M", "L", "LL", "3L"]
+    },
+    {
+      id: "tee-a",
+      name: "長袖シャツ(パターンA)",
+      price: 3700,
+      colors: ["ホワイト(ミントグリーン×ラベンダー)", "パープル(ミントグリーン×ラベンダー)", "ネイビー(ミントグリーン×ラベンダー)"],
+      sizes: ["SS", "S", "M", "L", "LL", "3L"]
+    },
+    {
+      id: "tee-b",
+      name: "長袖シャツ(パターンB)",
+      price: 3700,
+      colors: ["レッド(サファリ×ホワイト)", "アーミーグリーン(サファリ×ホワイト)", "ブラック(サファリ×ホワイト)"],
+      sizes: ["SS", "S", "M", "L", "LL", "3L"]
+    }
+  ];
+
+  var itemSel = document.getElementById("f-item");
+  var colorSel = document.getElementById("f-color");
+  var sizeSel = document.getElementById("f-size");
+  var qtyInput = document.getElementById("f-qty");
+  var addBtn = document.getElementById("btn-add");
+  var sendBtn = document.getElementById("btn-send");
+  var cartEl = document.getElementById("cart");
+  var cartEmpty = document.getElementById("cart-empty");
+  var cartTotal = document.getElementById("cart-total");
+  var cartTotalV = document.getElementById("cart-total-v");
+  var nameInput = document.getElementById("f-name");
+  var payInput = document.getElementById("f-pay");
+
+  PRODUCTS.forEach(function(p){
+    var opt = document.createElement("option");
+    opt.value = p.id;
+    opt.textContent = p.name + "(¥" + p.price.toLocaleString() + ")";
+    itemSel.appendChild(opt);
+  });
+
+  function currentProduct(){
+    return PRODUCTS.filter(function(p){ return p.id === itemSel.value; })[0];
+  }
+
+  function fillSelect(sel, values){
+    sel.innerHTML = "";
+    values.forEach(function(v){
+      var opt = document.createElement("option");
+      opt.value = v;
+      opt.textContent = v;
+      sel.appendChild(opt);
+    });
+  }
+
+  function syncFields(){
+    var p = currentProduct();
+    fillSelect(colorSel, p.colors);
+    fillSelect(sizeSel, p.sizes);
+  }
+  itemSel.addEventListener("change", syncFields);
+  syncFields();
+
+  var cart = [];
+
+  function renderCart(){
+    cartEl.querySelectorAll(".cart-line").forEach(function(el){ el.remove(); });
+    if(cart.length === 0){
+      cartEmpty.hidden = false;
+      cartTotal.hidden = true;
+      sendBtn.disabled = true;
+      return;
+    }
+    cartEmpty.hidden = true;
+    cartTotal.hidden = false;
+    sendBtn.disabled = false;
+
+    var total = 0;
+    cart.forEach(function(line, i){
+      total += line.price * line.qty;
+      var row = document.createElement("div");
+      row.className = "cart-line";
+      row.innerHTML =
+        '<div class="desc"><b>' + line.name + '</b>(' + line.color + ' / ' + line.size + ')<br>' +
+        '<span>数量 ' + line.qty + ' × ¥' + line.price.toLocaleString() + ' = ¥' + (line.price * line.qty).toLocaleString() + '</span></div>' +
+        '<button type="button" aria-label="削除">×</button>';
+      row.querySelector("button").addEventListener("click", function(){
+        cart.splice(i, 1);
+        renderCart();
+      });
+      cartEl.appendChild(row);
+    });
+    cartTotalV.textContent = "¥" + total.toLocaleString();
+  }
+
+  addBtn.addEventListener("click", function(){
+    var p = currentProduct();
+    var qty = Math.max(1, parseInt(qtyInput.value, 10) || 1);
+    cart.push({
+      name: p.name,
+      color: colorSel.value,
+      size: sizeSel.value,
+      qty: qty,
+      price: p.price
+    });
+    qtyInput.value = 1;
+    renderCart();
+  });
+
+  sendBtn.addEventListener("click", function(){
+    if(cart.length === 0) return;
+    var lines = cart.map(function(l, i){
+      return (i + 1) + ". " + l.name + " / カラー: " + l.color + " / サイズ: " + l.size + " / 数量: " + l.qty + "枚 / 小計: ¥" + (l.price * l.qty).toLocaleString();
+    }).join("\n");
+    var total = cart.reduce(function(sum, l){ return sum + l.price * l.qty; }, 0);
+    var name = nameInput.value.trim() || "(ここにお名前をご記入ください)";
+    var pay = payInput.value.trim() || "(ここにお支払い予定日・方法をご記入ください)";
+
+    var body =
+      "VSAP限定ウェア 注文フォーム\n\n" +
+      "お名前: " + name + "\n\n" +
+      "【注文内容】\n" + lines + "\n\n" +
+      "合計金額(税込): ¥" + total.toLocaleString() + "\n\n" +
+      "お支払い予定日・お支払い方法: " + pay + "\n\n" +
+      "-----\n" +
+      "応募締切: 9/30 まで(入金確認まで)\n" +
+      "発注: 10月上旬 / 出荷予定: 11月上旬\n" +
+      "このメールは brick.volley@gmail.com 宛の注文フォームから作成されました。";
+
+    var mailto = "mailto:brick.volley@gmail.com" +
+      "?subject=" + encodeURIComponent("【VSAP限定ウェア】注文申し込み(" + name + ")") +
+      "&body=" + encodeURIComponent(body);
+
+    window.location.href = mailto;
+  });
+
+  renderCart();
+})();
+</script>
