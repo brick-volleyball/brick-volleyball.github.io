@@ -314,6 +314,45 @@
   }
   .sizes-scroll{ overflow-x: auto; }
 
+  /* ---------- Look (着用イメージ) ---------- */
+  .looks{ margin-top: 56px; }
+  .look-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 22px;
+  }
+  @media (max-width: 560px){
+    .look-grid{ grid-template-columns: 1fr; }
+  }
+  .look-card{
+    margin:0;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    overflow:hidden;
+    background: var(--panel);
+  }
+  .look-card img{
+    width:100%;
+    height:auto;
+    display:block;
+    background: #fff;
+  }
+  .look-card figcaption{
+    padding: 12px 14px 14px;
+  }
+  .look-card figcaption .name{
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .look-card figcaption .tag{
+    display:block;
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--paper-faint);
+    margin-top: 2px;
+  }
+
   /* ---------- Order builder ---------- */
   .order{ margin-top: 60px; }
   .order-panel{
@@ -624,6 +663,42 @@
         </div>
       </div>
     </article>
+  </section>
+
+  <section class="looks">
+    <div class="section-label">Look</div>
+    <h2 class="section-title">着用イメージ</h2>
+    <p class="lede" style="margin-top:-8px;">実際に着用したイメージです。カラー・サイズ選びの参考にしてください。</p>
+    <div class="look-grid">
+      <figure class="look-card">
+        <img src="assets/lifestyle-set-women.jpg" alt="ドライフィットパーカー&ロングパンツ 着用イメージ(レディース、ブラック・グレー)" loading="lazy">
+        <figcaption>
+          <div class="name">パーカー & ロングパンツ</div>
+          <span class="tag">レディース着用イメージ</span>
+        </figcaption>
+      </figure>
+      <figure class="look-card">
+        <img src="assets/lifestyle-set-men.jpg" alt="ドライフィットパーカー&ロングパンツ 着用イメージ(メンズ、ブラック・グレー)" loading="lazy">
+        <figcaption>
+          <div class="name">パーカー & ロングパンツ</div>
+          <span class="tag">メンズ着用イメージ</span>
+        </figcaption>
+      </figure>
+      <figure class="look-card">
+        <img src="assets/lifestyle-tee-a.jpg" alt="長袖シャツ パターンA 着用イメージ(ネイビー・パープル・ホワイト)" loading="lazy">
+        <figcaption>
+          <div class="name">長袖シャツ(パターンA)</div>
+          <span class="tag">全カラー着用イメージ</span>
+        </figcaption>
+      </figure>
+      <figure class="look-card">
+        <img src="assets/lifestyle-tee-b.jpg" alt="長袖シャツ パターンB 着用イメージ(ブラック・レッド・アーミーグリーン)" loading="lazy">
+        <figcaption>
+          <div class="name">長袖シャツ(パターンB)</div>
+          <span class="tag">全カラー着用イメージ</span>
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <section class="order">
