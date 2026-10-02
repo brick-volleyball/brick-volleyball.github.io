@@ -52,7 +52,7 @@
 
 <!-- ============================================================
      BRICK ホームページ
-     最終更新日時: 2026-08-22 08:20 JST
+     最終更新日時: 2026-10-02 15:40 JST
      ------------------------------------------------------------
      文言・数値は content.js にすべて集約しています。
      このHTML/CSSは編集せず、content.js の値だけ書き換えれば
@@ -79,6 +79,12 @@
      content.jsのvideo_caption_1 / video_caption_2から取得（data-field）。
      合わせてvideo_eyebrow / video_title / video_noteの文言も、動画が
      2種類になったことに合わせてcontent.js側で更新済み。
+
+     【2026-10-02 追記】
+     VSAP限定ウェア告知バナーを削除（9/30募集終了のため）。
+     大会告知バナーの文言を「BRICK × LEVEL CUP 大会情報を更新」に変更し、
+     バッジを「UPDATE」に変更。
+     フッターにHTML自体の更新日時（html-version）を表示する行を追加。
 
      ★このHTML自体を編集した場合も、上の「最終更新日時」を
        書き換えてください。
@@ -814,18 +820,11 @@
 </nav>
 
 <div class="announce-stack">
-  <!-- 大会告知バナー(2026-09-14追加。大会ページ公開のお知らせ。
+  <!-- 大会告知バナー(2026-09-14追加 / 2026-10-02 文言を「情報更新」に変更。
        大会が終了したら、このブロックごと削除してください) -->
   <a href="/brick-level-cup.html" class="announce-bar">
-    <span class="announce-badge">NEW</span>
-    <span>大会情報ページを公開しました！「BRICK × LEVEL CUP」の詳細はこちら</span>
-    <span class="announce-arrow">→</span>
-  </a>
-
-  <!-- VSAP限定ウェア告知バナー(2026-09-15追加。募集終了(9/30)後は、このブロックごと削除してください) -->
-  <a href="/vsap/" class="announce-bar variant-b">
-    <span class="announce-badge">受付中</span>
-    <span>VSAP限定ウェア 受注販売を開始しました！応募締切 9/30</span>
+    <span class="announce-badge">UPDATE</span>
+    <span>【10/2更新】「BRICK × LEVEL CUP」の大会情報を更新しました！最新情報はこちら</span>
     <span class="announce-arrow">→</span>
   </a>
 </div>
@@ -1018,6 +1017,8 @@
     </div>
     <p class="footer-copy" data-field="footer_copy"></p>
     <p class="footer-copy" data-field="site_updated_at" style="opacity:0.6;"></p>
+    <!-- HTML自体の更新日時。このHTMLを編集したら、上部コメントの最終更新日時と合わせて書き換える -->
+    <p class="footer-copy" id="html-version" style="opacity:0.6;">HTML ver. 2026-10-02 15:40</p>
   </div>
 </footer>
 
