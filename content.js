@@ -28,7 +28,7 @@ const BRICK_CONTENT = {
  
   // ---- スコアボード（数字で見るBRICK） ----
   // num には数字だけ、unit には「名」「年」など単位を入れてください
-  score_1_num: "49",
+  score_1_num: "50",
   score_1_unit: "名",
   score_1_label: "現在のメンバー数",
  
@@ -52,7 +52,7 @@ const BRICK_CONTENT = {
   fri_day: "FRIDAY NIGHT",
   fri_title: "わいわいバレー",
   fri_desc: "バレー未経験・久しぶりの方向け。経験者も居るのでフォロー体制バッチリ！楽しみながら上達できます。",
-  fri_tag_1: "19:30〜21:30",
+  fri_tag_1: "19:00〜21:00",
   fri_tag_2: "ネットの高さ2m15cm",
  
   sun_day: "SUNDAY NIGHT",
