@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<!--
+  BRICK ツール紹介ページ（ログイン不要）
+  配置先: brick-volleyball.github.io/tools/about.html
+  VERSION: v2026-10-22 10:45
+  changelog:
+    v2026-10-22 10:45 初版。SNSからの受け皿として、ログイン前にツールの中身が分かるページを新設
+  TODO: GA4計測タグ（tools/index.html と同じ gtag.js スニペット）を <head> 内の印の位置に貼り付ける
+-->
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BRICK ツール紹介 | チーム運営の悩みから生まれたツール</title>
+<meta name="description" content="滋賀県長浜市のバレーボールチームBRICKが、自分たちの運営の悩みから作ったツール集。動画の切り出し・結合、ポジション配置、リーグ戦集計、チーム分け。14日間無料でお試しできます。">
+<meta property="og:title" content="BRICK ツール紹介">
+<meta property="og:description" content="チーム運営の悩みから生まれたツール集。14日間無料でお試しできます。">
+<meta property="og:type" content="website">
+<!-- ▼ GA4計測タグをここに貼り付け ▼ -->
+
+<!-- ▲ GA4計測タグここまで ▲ -->
+<style>
+  :root{
+    --navy:#182338;
+    --navy-2:#22304a;
+    --turq:#4FC3D9;
+    --orange:#E8703A;
+    --bg:#f5f7fa;
+    --card:#ffffff;
+    --ink:#182338;
+    --muted:#5b6678;
+    --line:#e2e7ee;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px;
+    overflow-x:hidden;
+  }
+  a{color:inherit}
+  .wrap{max-width:880px;margin:0 auto;padding:0 16px}
+
+  /* header */
+  .top{background:var(--navy);color:#fff}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+  .brand{font-weight:800;letter-spacing:.12em;text-decoration:none;font-size:18px}
+  .brand span{color:var(--turq)}
+  .top nav a{font-size:13px;text-decoration:none;opacity:.85;margin-left:16px}
+  .top nav a:hover{opacity:1}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;padding:48px 0 56px}
+  .eyebrow{color:var(--turq);font-size:12px;font-weight:700;letter-spacing:.2em}
+  .hero h1{font-size:clamp(24px,5.6vw,36px);line-height:1.4;margin:10px 0 16px;text-wrap:balance}
+  .hero h1 em{font-style:normal;color:var(--turq)}
+  .hero p{color:#d5dbe6;max-width:600px;text-wrap:pretty}
+  .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px;align-items:center}
+  .btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:999px;padding:14px 26px;font-size:15px;transition:transform .15s,box-shadow .15s}
+  .btn-main{background:var(--orange);color:#fff;box-shadow:0 4px 14px rgba(232,112,58,.35)}
+  .btn-main:hover{transform:translateY(-1px)}
+  .btn-sub{border:1.5px solid rgba(255,255,255,.5);color:#fff}
+  .price-note{font-size:13px;color:#aab4c5}
+
+  /* sections */
+  section{padding:48px 0}
+  .sec-title{font-size:22px;margin-bottom:6px}
+  .sec-lead{color:var(--muted);margin-bottom:24px}
+
+  /* story */
+  .story{background:var(--card);border-bottom:1px solid var(--line)}
+  .story-box{border-left:4px solid var(--turq);padding:4px 0 4px 18px;color:var(--ink)}
+  .story-box p+p{margin-top:10px}
+  .story-sign{margin-top:14px;font-size:13px;color:var(--muted)}
+
+  /* tools */
+  .tools{display:grid;gap:16px}
+  .tool{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;display:grid;grid-template-columns:52px 1fr;gap:16px}
+  .tool-icon{width:52px;height:52px;border-radius:12px;background:rgba(79,195,217,.14);display:flex;align-items:center;justify-content:center;color:var(--navy)}
+  .tool-icon svg{width:28px;height:28px}
+  .tool h3{font-size:17px;line-height:1.4}
+  .tag{display:inline-block;font-size:11px;font-weight:700;border-radius:4px;padding:1px 7px;margin-left:6px;vertical-align:2px}
+  .tag-pop{background:rgba(232,112,58,.14);color:#b8501f}
+  .tag-and{background:#eef1f5;color:var(--muted)}
+  .pain{margin:8px 0 10px;font-size:14px;color:var(--muted)}
+  .pain b{color:var(--ink);font-weight:700}
+  .feat{list-style:none;font-size:14px}
+  .feat li{position:relative;padding-left:18px}
+  .feat li::before{content:"";position:absolute;left:2px;top:.72em;width:7px;height:7px;border-radius:2px;background:var(--turq)}
+  .who{margin-top:10px;font-size:12.5px;color:var(--muted)}
+
+  /* steps */
+  .steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));counter-reset:s}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 16px}
+  .step::before{counter-increment:s;content:counter(s);display:inline-flex;width:26px;height:26px;border-radius:50%;background:var(--navy);color:#fff;font-weight:700;font-size:13px;align-items:center;justify-content:center;margin-bottom:8px}
+  .step h4{font-size:15px}
+  .step p{font-size:13px;color:var(--muted)}
+
+  /* faq */
+  .faq details{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+  .faq details+details{margin-top:10px}
+  .faq summary{font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:24px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:0;top:-2px;font-size:20px;color:var(--turq)}
+  .faq details[open] summary::after{content:"−"}
+  .faq details p{margin-top:8px;font-size:14px;color:var(--muted)}
+
+  /* final cta */
+  .final{background:var(--navy);color:#fff;text-align:center;border-radius:16px;padding:36px 20px;margin:0 0 8px}
+  .final h2{font-size:21px;margin-bottom:8px}
+  .final p{color:#c9d1de;font-size:14px;margin-bottom:20px}
+
+  footer{padding:28px 0 36px;text-align:center;font-size:12px;color:var(--muted)}
+  footer a{margin:0 8px}
+  .ver{margin-top:8px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:#9aa4b4}
+
+  @media (min-width:640px){
+    .tool{padding:24px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">BRI<span>C</span>K</a>
+    <nav>
+      <a href="/">ホーム</a>
+      <a href="./">サポーターログイン</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="eyebrow">BRICK TOOLS</div>
+    <h1>チーム運営の「めんどう」から<br>生まれた<em>ツール集</em></h1>
+    <p>試合動画の切り出し、ポジションの説明、リーグ戦の集計、練習のチーム分け。滋賀県長浜市のバレーボールチームBRICKが、自分たちの困りごとを解決するために作ったツールを公開しています。</p>
+    <div class="hero-cta">
+      <a class="btn btn-main" href="./">14日間無料で試してみる</a>
+      <a class="btn btn-sub" href="#tools">ツールを見る</a>
+    </div>
+    <p class="price-note" style="margin-top:12px">お試し後は月額200円（税込）・いつでも解約できます</p>
+  </div>
+</div>
+
+<section class="story">
+  <div class="wrap">
+    <h2 class="sec-title">作ったきっかけ</h2>
+    <div class="story-box" style="margin-top:16px">
+      <p>BRICKは、高校生から40代までが集まる男女混合のバレーボールチームです。チームを続けていると、練習や試合以外の「地味な仕事」がどんどん増えていきます。</p>
+      <p>2時間の試合動画からいいプレーを探す、ローテーションをLINEで説明する、総当たり戦の勝ち点を電卓で計算する。こうした作業を少しでも楽にしたくて、ひとつずつツールを作ってきました。</p>
+      <p>同じように困っているチームの方に使ってもらえたら嬉しいです。</p>
+    </div>
+    <p class="story-sign">BRICK 運営 つく</p>
+  </div>
+</section>
+
+<section id="tools">
+  <div class="wrap">
+    <h2 class="sec-title">使えるツール</h2>
+    <p class="sec-lead">すべてスマホのブラウザで動きます（チーム分けのみAndroidアプリ）。</p>
+
+    <div class="tools">
+
+      <article class="tool">
+        <div class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>
+        </div>
+        <div>
+          <h3>BRICK動画クリッパー<span class="tag tag-pop">人気</span></h3>
+          <p class="pain"><b>こんな悩みに：</b>長い試合動画から、いいプレーの場面だけを切り出したい</p>
+          <ul class="feat">
+            <li>試合動画を読み込んで、必要な場面だけをクリップとして切り出し</li>
+            <li>インストール不要、スマホのブラウザだけで完結</li>
+          </ul>
+          <p class="who">動画係・撮影担当の方に</p>
+        </div>
+      </article>
+
+      <article class="tool">
+        <div class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="8" height="12" rx="1.5"/><rect x="14" y="6" width="8" height="12" rx="1.5"/><path d="M10 12h4"/></svg>
+        </div>
+        <div>
+          <h3>BRICKクリップ結合</h3>
+          <p class="pain"><b>こんな悩みに：</b>切り出したクリップを1本の動画にまとめて、SNSに上げたい</p>
+          <ul class="feat">
+            <li>複数のクリップを並び替えて、1本のmp4に結合</li>
+            <li>音声もクリップの区切りに合わせて自然につながります</li>
+          </ul>
+          <p class="who">動画係・SNS担当の方に</p>
+        </div>
+      </article>
+
+      <article class="tool">
+        <div class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 12h18"/><circle cx="8" cy="7.5" r="1.3"/><circle cx="16" cy="7.5" r="1.3"/><circle cx="12" cy="16.5" r="1.3"/></svg>
+        </div>
+        <div>
+          <h3>BRICKポジション配置</h3>
+          <p class="pain"><b>こんな悩みに：</b>ローテーションやフォーメーションを言葉で説明しても伝わらない</p>
+          <ul class="feat">
+            <li>コート上に選手を配置して、ポジションを図で共有</li>
+          </ul>
+          <p class="who">監督・キャプテンの方に</p>
+        </div>
+      </article>
+
+      <article class="tool">
+        <div class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 4v16M15 4v16"/></svg>
+        </div>
+        <div>
+          <h3>BRICKリーグ戦集計</h3>
+          <p class="pain"><b>こんな悩みに：</b>総当たり戦の勝ち点やセット率を手で計算している</p>
+          <ul class="feat">
+            <li>対戦結果を入力するだけで順位を自動集計</li>
+            <li>結果は共有リンクで配れて、受け取った人はログインなしで見られます</li>
+          </ul>
+          <p class="who">大会・練習試合の運営係の方に</p>
+        </div>
+      </article>
+
+      <article class="tool">
+        <div class="tool-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M2.5 20c.6-3 2.8-5 5.5-5s4.9 2 5.5 5M13.5 15.3c.8-.2 1.6-.3 2.5-.3 2.7 0 4.9 2 5.5 5"/></svg>
+        </div>
+        <div>
+          <h3>チーム分けアプリ<span class="tag tag-and">Android</span></h3>
+          <p class="pain"><b>こんな悩みに：</b>練習のたびにチーム分けで時間がかかる</p>
+          <ul class="feat">
+            <li>参加メンバーからチームを手早く作成</li>
+          </ul>
+          <p class="who">練習の幹事の方に</p>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <h2 class="sec-title">使い始めるまで</h2>
+    <p class="sec-lead">3ステップ、2分ほどで使えます。</p>
+    <div class="steps">
+      <div class="step"><h4>Googleでログイン</h4><p>サポーターページでGoogleアカウントを選ぶだけ。</p></div>
+      <div class="step"><h4>サポーター登録</h4><p>最初の14日間は無料。気に入らなければ期間中に解約できます。</p></div>
+      <div class="step"><h4>ツールを開く</h4><p>ツール一覧からすべてのツールが使い放題になります。</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="faq" style="padding-top:8px">
+  <div class="wrap">
+    <h2 class="sec-title">よくある質問</h2>
+    <div style="margin-top:16px">
+      <details>
+        <summary>本当に無料で試せますか？</summary>
+        <p>はい。登録から14日間は料金がかかりません。期間中に解約すれば、一度も請求されません。</p>
+      </details>
+      <details>
+        <summary>解約はどこからできますか？</summary>
+        <p>ログイン後のツール一覧ページにある「お支払い方法の確認・変更や解約」から、いつでもご自身で手続きできます。</p>
+      </details>
+      <details>
+        <summary>なぜ有料なのですか？</summary>
+        <p>いただいたサポーター費は、会場費・道具・大会参加などBRICKのチーム運営に使わせていただいています。その御礼として、ツールをご利用いただける仕組みです。</p>
+      </details>
+      <details>
+        <summary>iPhoneでも使えますか？</summary>
+        <p>チーム分けアプリ（Android専用）以外は、iPhone・Androidどちらのブラウザでもご利用いただけます。</p>
+      </details>
+      <details>
+        <summary>BRICKのメンバーでなくても使えますか？</summary>
+        <p>はい、どなたでもご利用いただけます。むしろ、他のチームの方に使っていただくために公開しています。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:8px">
+  <div class="wrap">
+    <div class="final">
+      <h2>まずは14日間、試してみませんか</h2>
+      <p>お試し後は月額200円（税込）。いつでも解約できます。</p>
+      <a class="btn btn-main" href="./">無料で試してみる</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <a href="/">BRICK ホーム</a>
+    <a href="./tokushoho.html">特定商取引法に基づく表記</a>
+    <a href="mailto:brick.volley@gmail.com">お問い合わせ</a>
+  </div>
+  <div class="ver" id="ver"></div>
+</footer>
+
+<script>
+  // バージョン表記（ファイル先頭コメントの VERSION と必ず揃えて更新する）
+  const APP_VERSION = 'v2026-10-22 10:45';
+  document.getElementById('ver').textContent = APP_VERSION;
+</script>
+</body>
+</html>
