@@ -52,7 +52,7 @@
 
 <!-- ============================================================
      BRICK ホームページ
-     最終更新日時: 2026-10-02 15:40 JST
+     最終更新日時: 2026-10-22 14:05 JST
      ------------------------------------------------------------
      文言・数値は content.js にすべて集約しています。
      このHTML/CSSは編集せず、content.js の値だけ書き換えれば
@@ -85,6 +85,12 @@
      大会告知バナーの文言を「BRICK × LEVEL CUP 大会情報を更新」に変更し、
      バッジを「UPDATE」に変更。
      フッターにHTML自体の更新日時（html-version）を表示する行を追加。
+
+     【2026-10-22 追記】
+     スマホではナビ(.nav-links)が非表示のため、ツールへの導線がフッターの
+     「サポーター」リンクしかなかった。告知バナーの2本目(variant-b、オレンジ系)
+     として、ログイン不要のツール紹介ページ(/tools/about.html)への案内を追加。
+     ナビ・フッターの「サポーター」リンク(/tools/)は変更なし。
 
      ★このHTML自体を編集した場合も、上の「最終更新日時」を
        書き換えてください。
@@ -827,6 +833,13 @@
     <span>【10/2更新】「BRICK × LEVEL CUP」の大会情報を更新しました！最新情報はこちら</span>
     <span class="announce-arrow">→</span>
   </a>
+  <!-- ツール紹介バナー(2026-10-22追加)。スマホでもページ上部から
+       ツール紹介ページへ行けるようにするための導線 -->
+  <a href="/tools/about.html" class="announce-bar variant-b">
+    <span class="announce-badge">TOOLS</span>
+    <span>チーム運営の悩みから生まれたツールを公開中！14日間無料でお試しできます</span>
+    <span class="announce-arrow">→</span>
+  </a>
 </div>
 
 <header class="hero">
@@ -1018,7 +1031,7 @@
     <p class="footer-copy" data-field="footer_copy"></p>
     <p class="footer-copy" data-field="site_updated_at" style="opacity:0.6;"></p>
     <!-- HTML自体の更新日時。このHTMLを編集したら、上部コメントの最終更新日時と合わせて書き換える -->
-    <p class="footer-copy" id="html-version" style="opacity:0.6;">HTML ver. 2026-10-02 15:40</p>
+    <p class="footer-copy" id="html-version" style="opacity:0.6;">HTML ver. 2026-10-22 14:05</p>
   </div>
 </footer>
 
