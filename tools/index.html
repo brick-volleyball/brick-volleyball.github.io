@@ -18,10 +18,16 @@
 
 <!-- ============================================================
      BRICK ツール 入口ページ
-     最終更新日時: 2026-09-19 07:15 JST
+     最終更新日時: 2026-10-22 13:55 JST
+     VERSION: v2026-10-22 13:55
      ------------------------------------------------------------
      Googleログイン → Firebase認証 → Firestoreでサポーター登録状況を確認
      → 登録中ならツール一覧へ、未登録ならStripe決済（サポーター登録）へ誘導
+
+     2026-10-22: 説明ボックス(about-box)の下に、ログイン不要のツール紹介ページ
+     (./about.html)へのリンク「使えるツールの紹介を見る →」を追加。
+     あわせて、更新有無が目視でわかるよう、フッターにバージョン表記を追加。
+     判定ロジックへの変更なし。
 
      2026-09-19: 管理者以外のアカウントでログインした際、「サポーター登録が
      確認できませんでした」の案内(result-inactive)が表示された状態で画面を
@@ -187,6 +193,23 @@
     text-wrap: pretty;
   }
 
+  .about-link{
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--turquoise);
+    text-decoration: none;
+  }
+  .about-link:hover{ text-decoration: underline; }
+
+  .version{
+    margin-top: 10px;
+    font-family: ui-monospace, Menlo, Consolas, monospace;
+    font-size: 10.5px;
+    color: rgba(255,255,255,0.28);
+  }
+
   #google-signin-btn{
     display: flex;
     justify-content: center;
@@ -292,6 +315,7 @@
 
   <div class="about-box">
     <p>BRICKは、日頃のチーム運営(会場費や道具、大会参加費など)を支えてくださる「BRICKサポーター」を募集しています。ご支援いただいた方には御礼として、チーム運営の中から生まれた各種ツールをご利用いただけます。</p>
+    <a href="./about.html" class="about-link">使えるツールの紹介を見る →</a>
   </div>
 
   <h1>サポーターとしてログイン</h1>
@@ -322,6 +346,7 @@
     お困りの場合は <a href="mailto:brick.volley@gmail.com">brick.volley@gmail.com</a> までご連絡ください。<br>
     <a href="./tokushoho.html" target="_blank" rel="noopener">特定商取引法に基づく表記</a>
   </p>
+  <p class="version">v2026-10-22 13:55</p>
 </div>
 
 <!-- Firebase SDK -->
