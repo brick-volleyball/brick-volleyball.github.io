@@ -2,10 +2,10 @@
 <!--
   BRICK ツール紹介ページ（ログイン不要）
   配置先: brick-volleyball.github.io/tools/about.html
-  VERSION: v2026-10-22 13:45
+  VERSION: v2026-10-30 16:00
   changelog:
+    v2026-10-30 16:00 GA4計測タグの後半（gtag('config') を含むscriptブロック）が抜けており計測されていなかったため追加
     v2026-10-22 10:45 初版。SNSからの受け皿として、ログイン前にツールの中身が分かるページを新設
-  TODO: GA4計測タグ（tools/index.html と同じ gtag.js スニペット）を <head> 内の印の位置に貼り付ける
 -->
 <html lang="ja">
 <head>
@@ -19,6 +19,12 @@
 <!-- ▼ GA4計測タグをここに貼り付け ▼ -->
      <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-DPBV5LWB0L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DPBV5LWB0L');
+</script>
 <!-- ▲ GA4計測タグここまで ▲ -->
 <style>
   :root{
@@ -306,7 +312,7 @@
 
 <script>
   // バージョン表記（ファイル先頭コメントの VERSION と必ず揃えて更新する）
-  const APP_VERSION = 'v2026-10-22 13:45';
+  const APP_VERSION = 'v2026-10-30 16:00';
   document.getElementById('ver').textContent = APP_VERSION;
 </script>
 </body>
